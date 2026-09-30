@@ -1,8 +1,6 @@
 +++
 title = 'Irreġistra mal-lista tal-mailing tagħna'
-slug = 'il-mailin-list'
+slug = 'lista-tal-mailing'
 +++
 
-Guys m'għandix idea kif ħa ngħid _Mailing List_ bil-Malti :(
-
-    
+{{< mailing-list >}}

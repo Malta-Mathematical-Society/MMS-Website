@@ -7,26 +7,24 @@
         <img src="{{ . | absURL }}" alt="{{ $.Site.Title }}" class="site-logo" />
       </a>
     {{ end }}
-
-  <div class="lang-switch">
-    {{ $currentPage := . }}
-    {{ range .Site.Languages }}
-      {{ $langCode := .Lang }}
-      {{ $langLabel := .Label }}
-      {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
-      
-      {{ if $match }}
-        {{ $translatedPage := index $match 0 }}
-        <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
-          {{ $langLabel }}
-        </a>
-      {{ else }}
-        <span class="lang-disabled" title="{{ i18n "not_translated" }}">
-          {{ $langLabel }} ({{ i18n "not_translated" }})
-        </span>
+  {{if .IsTranslated}}
+    <div class="lang-switch">
+      {{ $currentPage := . }}
+      {{ range .Site.Languages }}
+        {{ $langCode := .Lang }}
+        {{ $langLabel := .Label }}
+        {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
+        
+        {{ if $match }}
+          {{ $translatedPage := index $match 0 }}
+          <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
+            {{ $langLabel }}
+          </a>
+        {{ end }}
       {{ end }}
-    {{ end }}
-  </div>
+    </div>
+  {{ end }}
+  
 
 <!-- Global Navigation Links -->
   <nav class="site-nav">

@@ -35,3 +35,12 @@ defaultContentLanguageInSubDir = true
 [params]
   browserIcon = "logo-only-color-borderless.png" #used in badeof.html
   homeIcon = "logo-primary-color-light-background-borderless.svg" #used in header.html
+
+#all hardcoded referenced links for the Mailing List here
+[params.mailerlite]
+  action_url = "https://assets.mailerlite.com/jsonp/2669609/forms/199945518538819358/subscribe"
+
+  [params.mailerlite.groups]
+    events = "199945241031083305"
+    newsletters = "199945256381187925"
+    comics = "199945281150650157"

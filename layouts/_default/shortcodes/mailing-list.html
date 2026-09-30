@@ -1,0 +1,84 @@
+{{ $lang := .Page.Language.Lang }}
+{{ $ml := .Page.Params.mailerlite }}
+
+<section class="mailing-list-section">
+  <div class="mailing-list-container">
+    <h3>{{ i18n "mailing_title" }}</h3> <!--grab the sentence in the right language-->
+    <p>{{ i18n "mailing_subtitle" }}</p>
+
+    <form id="mailing-list-form" action="{{ $ml.action_url }}" method="POST" target="_blank">
+        <div class="form-group">
+            <label for="ml-email">{{ i18n "mailing_email_label" }}</label>
+            {{/*
+                typid=e=... triggers automatic validation on submit
+                id=... provides some automatic stuff depending on id
+                name=.. is the REQUIRED MAPKEY for our mailing service MailerLite to recognize the email field
+            */}}
+            <input 
+            type="email" 
+            id="ml-email" 
+            name="fields[email]" 
+            required placeholder="rightback@you.edu"> 
+        </div>
+
+        <!-- Here we pass onto the language the user was browsing in -->
+        <input 
+        type="hidden" 
+        name="fields[language]" 
+        value="{{ $lang }}">
+
+        <div class="form-group categories">
+        <p class="category-title">{{ i18n "mailing_categories_label" }}</p>
+        <label class="checkbox-label">
+            <input 
+            type="checkbox"
+            class="category-cb"
+            name="groups[]"
+            value="{{$ml.groups.events }}"> 
+            {{ i18n "mailing_cat_events" }}
+        </label>
+
+        <label class="checkbox-label">
+            <input type="checkbox" class="category-cb" name="groups[]" value="{{ $ml.groups.newsletters }}"> 
+            {{ i18n "mailing_cat_newsletters" }}
+        </label>
+
+        <label class="checkbox-label">
+            <input type="checkbox" class="category-cb" name="groups[]" value="{{ $ml.groups.comics }}"> 
+            {{ i18n "mailing_cat_comics" }}
+        </label>
+        </div>
+
+      <button type="submit" class="btn-subscribe">{{ i18n "mailing_submit" }}</button>
+    </form>
+  </div>
+</section>
+
+<!--Validation for selecting at least one category-->
+<!--and for the error to be the same style as the email field's error-->
+<script>
+    const form = document.getElementById('mailing-list-form');
+    const checkboxes = form.querySelectorAll('.category-cb');
+    const firstCheckbox = checkboxes[0];
+
+    form.addEventListener('submit', function(e) {
+        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+    
+        if (!isChecked) {
+            e.preventDefault();
+            // Attach the error bubble directly to the first checkbox
+            firstCheckbox.setCustomValidity('{{ i18n "mailing_validation_error" }}');
+            firstCheckbox.reportValidity();
+        }
+        else {
+            firstCheckbox.setCustomValidity('');
+        }
+    });
+
+  // Clear the error bubble as soon as the user checks any box
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            firstCheckbox.setCustomValidity('');
+        });
+    });
+</script>

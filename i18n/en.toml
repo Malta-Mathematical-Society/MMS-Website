@@ -23,3 +23,31 @@ other = "Newsletters"
 # Headers and Titles
 [upcoming_events]
 other = "Upcoming Events"
+
+#mailing list transaltions
+[mailing_title]
+other = "Subscribe to our Mailing List!"
+
+[mailing_subtitle]
+other = "Get our updates delievered fresh to your email."
+
+[mailing_email_label]
+other = "Email Address:"
+
+[mailing_categories_label]
+other = "Select categories of interest:"
+
+[mailing_cat_events]
+other = "Events"
+
+[mailing_cat_newsletters]
+other = "Newsletters"
+
+[mailing_cat_comics]
+other = "Comics"
+
+[mailing_submit]
+other = "Subscribe"
+
+[mailing_validation_error]
+other = "Please select at least one category to subscribe to."

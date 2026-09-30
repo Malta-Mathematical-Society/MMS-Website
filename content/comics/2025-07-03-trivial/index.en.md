@@ -8,8 +8,7 @@ post = ""
 
 ![Comic Panel](comic.jpg)
 
-<details>
-<summary<b>Read Transcript</b></summary>
-* **Panel 1:** 
-* **Panel 2:** 
-</details>
+{{% details "Read Transcript" %}}
+* **Panel 1:** First line here...
+* **Panel 2:** Second line here...
+{{% /details %}}
