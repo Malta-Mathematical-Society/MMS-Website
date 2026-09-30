@@ -7,23 +7,24 @@
         <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo" />
       </a>
     {{ end }}
-  {{if .IsTranslated}}
-    <div class="lang-switch">
-      {{ $currentPage := . }}
-      {{ range site.Languages }}
-        {{ $langCode := .Name }}
-        {{ $langLabel := .Name }}
-        {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
-        
-        {{ if $match }}
-          {{ $translatedPage := index $match 0 }}
-          <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
-            {{ $langLabel }}
-          </a>
+    {{if .IsTranslated}}
+      <div class="lang-switch">
+        {{ $currentPage := . }}
+        {{ range site.Languages }}
+          {{ $langCode := .Name }}
+          {{ $langLabel := .Name }}
+          {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
+          
+          {{ if $match }}
+            {{ $translatedPage := index $match 0 }}
+            <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
+              {{ $langLabel }}
+            </a>
+          {{ end }}
         {{ end }}
-      {{ end }}
-    </div>
-  {{ end }}
+      </div>
+    {{ end }}
+  </div>
   
 
 <!-- Global Navigation Links -->
@@ -32,27 +33,29 @@
       <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
     {{ end }}
 
-    {{ with .Site.GetPage "/membership" }}
+    {{ with site.GetPage "/membership" }}
       <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
     {{ end }}
 
-    {{ with .Site.GetPage "/mailing-list" }}
+    {{ with site.GetPage "/mailing-list" }}
       <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
     {{ end }}
 
     <!-- Archive Dropdown -->
     <div class="dropdown">
-      <span class="dropdown-title">{{ i18n "nav_archive" }} &#9662;</span>
+      <button class="dropdown-title" type="button" aria-expanded="false">
+        {{ i18n "nav_archive" }}
+      </button>
       <div class="dropdown-content">
-        {{ with .Site.GetPage "/events" }}
+        {{ with site.GetPage "/events" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
         {{ end }}
         
-        {{ with .Site.GetPage "/comics" }}
+        {{ with site.GetPage "/comics" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
         {{ end }}
 
-        {{ with .Site.GetPage "/newsletters" }}
+        {{ with site.GetPage "/newsletters" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
         {{ end }}
       </div>

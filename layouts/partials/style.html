@@ -1,5 +1,8 @@
 <style>
-  /*import Lato, the font of our logo*/
+  /* ==========================================================================
+   1. VARIABLES, RESETS & BASE LAYOUT
+   ========================================================================== */
+/*import Lato, the font of our logo*/
   @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
   
   :root {
@@ -21,6 +24,11 @@
     --footer-bg: #971C13;        /* Red footer stripe */
   }
 
+  /* Global Box Sizing Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: var(--font-secondary);
     font-size: var(--font-scale);
@@ -28,34 +36,10 @@
     padding: 0px;
     text-align: left;
     background-color: var(--background-color);
-    word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
     color: var(--text-color);
   }
-
-  /* Header Stripe & White Divider */
-  .header-stripe {
-    display:flex;
-    justify-content: space-between; /*the x-axis*/
-    align-items: center; /*the y-axis center*/
-    background-color: var(--header-bg);
-    border-bottom: 10px solid var(--stripe-white);
-    padding: 0.75rem 1.5rem;
-  }
-
-/* Logo + Lang Switcher */
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;                      /* Space between logo and language toggle */
-}
-
-.site-logo {
-  height: 42px;
-  width: auto;
-  display: block;
-}
 
   main {
     max-width: var(--width);
@@ -64,12 +48,16 @@
     line-height: 1.6;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+/* ==========================================================================
+   2. TYPOGRAHY & BASE HTML ELEMENTS
+   ========================================================================== */
+  h1,h2,h3,h4,h5,h6 {
     font-family: var(--font-main);
     color: var(--heading-color);
   }
@@ -113,10 +101,6 @@
     border-top: 1px dashed;
   }
 
-  img {
-    max-width: 100%;
-  }
-
   code {
     font-family: monospace;
     padding: 2px;
@@ -130,10 +114,179 @@
     font-style: italic;
   }
 
-  footer {
-    padding: 25px 0;
-    text-align: center;
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   ========================================================================== */
+  .header-stripe {
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: space-between; /*the x-axis*/
+    align-items: center; /*the y-axis center*/
+    background-color: var(--header-bg);
+    border-bottom: 10px solid var(--stripe-white);
+    padding: 0.75rem 1.5rem;
+    gap: 1.5rem;
+    width: 100%;
   }
+
+@media (max-width: 700px) {     /* Set this to the exact width where items get close */
+  .header-stripe {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  /* Row 1: Spreads Logo to left wall and Language Switch to right wall */
+  .header-left {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Row 2: Takes up the entire width on its own line below */
+  .site-nav {
+    justify-content: space-between; /* Distributes links evenly across the line */
+    width: 100%;
+  }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;                      /* Space between logo and language toggle */
+  flex: 0 0 auto;
+}
+
+.site-logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.site-nav{
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 1rem;
+  margin-left: auto; /* Hugs the right wall on wide screens */
+}
+
+.site-nav a {
+  color: var(--link-color);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-title {
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--link-color);
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Hover & Keyboard Focus Underline ONLY HERE NO WHERE ELSE for mobile*/
+.dropdown-title:hover {
+  text-decoration: underline;     /* Underlines as soon as mouse hovers */
+}
+
+/* Default Arrow (Default: side arrow '<' or '›') */
+.dropdown-title::before {
+  content: "▸"; 
+  text-decoration: none;        /* Prevents underline from bleeding under the arrow */
+}
+
+/* Hide dropdown menu by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-width:150px;
+  padding: 0.5rem 0;
+}
+
+/* Style links inside the dropdown menu */
+.dropdown-content a {
+  color: #222222 !important; /* Force dark text on white menu background */
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+  background-color: #F3F4F6;
+  text-decoration: underline;
+}
+
+/* 1. CLICK / TAP STATE (:focus-within handles click-away automatically) */
+.dropdown:focus-within .dropdown-title::before {
+  content: "▾";
+}
+
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+
+
+/* ==========================================================================
+   4. LANGUAGE SWITCHER TOGGLE
+   ========================================================================== */
+
+.lang-switch {
+  display: inline-flex;
+  background-color: rgba(0, 0, 0, 0.12); /* Subtle pill background track */
+  padding: 4px;
+  border-radius: 20px;                   /* Rounded pill layout */
+  gap: 2px;
+}
+
+
+.lang-switch a {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 16px;                   /* Matches outer container curves */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover state for inactive options */
+.lang-switch a:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Active Language Button (Inverted/Highlighted) */
+.lang-switch a.active {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Gives a raised button depth */
+}
+/* ==========================================================================
+   5. PAGE-SPECIFIC COMPONENTS
+   ========================================================================== */
+
 
   .title:hover {
     text-decoration: none;
@@ -179,60 +332,55 @@
     color: var(--visited-color);
   }
 
-/* Dropdown Container */
-.dropdown {
-  position: relative;
-  display: inline-block;
+  .comic-content img {
+    max-height: 80vh;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /*MAILING-LIST PAGE STYLING*/
+  .checkbox-label {
+    display: flex;        /* Takes up the full width, forcing a new line */
+    align-items: center;  /* Vertically aligns the checkbox square with the text */
+    gap: 0.5rem;          /* Adds space between the checkbox box and label text */
+    margin-bottom: 0.5rem;/* Creates breathing room between rows */
+    cursor: pointer;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+/* ==========================================================================
+   6. MOBILE RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 600px) {
+  .header-stripe {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .site-nav {
+    margin-left: 0;               /* Resets right-align so it stacks naturally */
+  }
+
+  ul.blog-posts li {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  ul.blog-posts li span {
+    flex: none;
+    font-size: 0.85em;
+    opacity: 0.85;
+  }
 }
 
-/* Hide dropdown menu by default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  min-width: 140px;
-  z-index: 1000;
-  padding: 0.5rem 0;
-}
-
-/* Style links inside the dropdown menu */
-.dropdown-content a {
-  color: #222222 !important; /* Force dark text on white menu background */
-  display: block;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.dropdown-content a:hover {
-  background-color: #F3F4F6;
-}
-
-/* Reveal dropdown menu when hovering over the container */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.comic-content img {
-  max-height: 80vh;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/*MAILING-LIST PAGE STYLING*/
-.checkbox-label {
-  display: flex;        /* Takes up the full width, forcing a new line */
-  align-items: center;  /* Vertically aligns the checkbox square with the text */
-  gap: 0.5rem;          /* Adds space between the checkbox box and label text */
-  margin-bottom: 0.5rem;/* Creates breathing room between rows */
-  cursor: pointer;
-}
 </style>
+
