@@ -2,17 +2,17 @@
 <div class = "header-stripe"> 
   <!-- Webpage Header Logo + language toggle -->
   <div class="header-left">
-    {{ with .Site.Params.homeIcon }}
-      <a href="{{ $.Site.Home.RelPermalink }}">
-        <img src="{{ . | absURL }}" alt="{{ $.Site.Title }}" class="site-logo" />
+    {{ with site.Params.homeIcon }}
+      <a href="{{ site.Home.RelPermalink }}">
+        <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo" />
       </a>
     {{ end }}
   {{if .IsTranslated}}
     <div class="lang-switch">
       {{ $currentPage := . }}
-      {{ range .Site.Languages }}
-        {{ $langCode := .Lang }}
-        {{ $langLabel := .Label }}
+      {{ range site.Languages }}
+        {{ $langCode := .Name }}
+        {{ $langLabel := .Name }}
         {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
         
         {{ if $match }}

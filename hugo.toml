@@ -10,12 +10,12 @@ defaultContentLanguageInSubDir = true
 #https://gohugo.io/configuration/languages/
 [languages]
   [languages.en]
-    languageCode = 'en-mt'
+    locale = 'en-GB'
     label = 'English'
     weight = 1
   
   [languages.mt]
-    languageCode = 'mt'
+    locale = 'mt-MT'
     label = 'Malti'
     weight = 2
 
