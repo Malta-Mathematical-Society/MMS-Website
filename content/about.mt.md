@@ -17,3 +17,11 @@ Matul iż-żminijiet, il-matematika qajla kienet attività solitarja. Is-Soċjet
 **Uffiċjal tal-Midja Soċjali u l-Marketing**: Marina Gusarov  
 
 ### Membri Eżekuttivi
+
+Gabriel Camilleri  
+Karl Bartolo  
+Karl Caruana  
+Zuzanna Galicka  
+Margaret Rees  
+Andy Debrincat  
+Giulia Muscat
