@@ -8,4 +8,6 @@ locationPin = "https://maps.app.goo.gl/n4EsNDVuDKxuNvid6"
 isLocationConfirmed = true
 +++
 
-_Beyond the Jacobian Conjecture_ kien diskussjoni dwar l-IA fil-matematika. Għandu jinkiteb iktar hawnhekk please
+_Beyond the Jacobian Conjecture_ kien diskussjoni dwar l-IA fil-matematika, b'panelisti Prof. Joel Azzopardi, Dr. Alexander Farrugia, Prof. Josef Lauri and Prof. Joseph Muscat, u mmoderat minn Louie Cotter.
+
+![Poster](poster1.jpg)
