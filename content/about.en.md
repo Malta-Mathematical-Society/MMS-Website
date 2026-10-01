@@ -17,10 +17,10 @@ Throughout history, mathematics has rarely been a solitary pursuit. The Malta Ma
 
 ### Executive Members
 
-Gabriel Camilleri  
 Karl Bartolo  
+Gabriel Camilleri  
 Karl Caruana  
-Zuzanna Galicka  
-Margaret Rees  
 Andy Debrincat  
-Giulia Muscat
+Zuzanna Galicka  
+Giulia Muscat  
+Margaret Rees
