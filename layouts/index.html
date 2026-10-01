@@ -5,8 +5,9 @@
     <ul>
         {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
 
-            {{/* show should be true if isDateConfirmed is false and/or the date is in the future */}}
+            {{/* show should be true if isDateConfirmed is false and/or the date is in the future, and if the event is not a draft */}}
             {{ $isDateConfirmed := .Params.isDateConfirmed }}
+            {{ $isDraft := .Params.draft }}
             {{ $show := false }}
             {{ if eq $isDateConfirmed false }}
                 {{ $show = true }}
@@ -14,6 +15,10 @@
                 {{ if (time.AsTime .Params.enddate).After now }}
                     {{ $show = true }}
                 {{ end }}
+            {{ end }}
+
+            {{ if eq $isDraft true }}
+                {{ $show = false }}
             {{ end }}
 
             {{ if $show }}
