@@ -18,10 +18,10 @@ Matul iż-żminijiet, il-matematika qajla kienet attività solitarja. Is-Soċjet
 
 ### Membri Eżekuttivi
 
-Gabriel Camilleri  
 Karl Bartolo  
+Gabriel Camilleri  
 Karl Caruana  
-Zuzanna Galicka  
-Margaret Rees  
 Andy Debrincat  
-Giulia Muscat
+Zuzanna Galicka  
+Giulia Muscat  
+Margaret Rees
