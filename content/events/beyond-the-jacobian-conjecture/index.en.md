@@ -8,6 +8,6 @@ locationPin = "https://maps.app.goo.gl/n4EsNDVuDKxuNvid6"
 isLocationConfirmed = true
 +++
 
-Beyond the Jacobian Conjecture was a panel discussion about AI in Mathematics, with panelists Prof. Joel Azzopardi, Dr. Alexander Farrugia, Prof. Josef Lauri and Prof. Joseph Muscat, and moderated by Louie Cotter.
+_Beyond the Jacobian Conjecture_ was a panel discussion about AI in Mathematics, with panelists Prof. Joel Azzopardi, Dr Alexander Farrugia, Prof. Josef Lauri and Prof. Joseph Muscat, and moderated by Louie Cotter.
 
 ![Poster](poster1.jpg)
