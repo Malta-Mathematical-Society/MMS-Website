@@ -1,6 +1,4 @@
-+++
-title = 'About the MMS'
-+++
+# About Us
 
 [//]: # (todo I just copied and pasted from Linkedin, do we want to change anything here?)
 
