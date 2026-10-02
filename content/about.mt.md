@@ -1,3 +1,5 @@
++++ title = 'Dwarna' +++
+
 # Dwarna
 
 Is-Soċjetà Maltija tal-Matematika (MMS) hija soċjetà ibbażata f'Malta bl-iskop li żżid il-popolarità u l-għarfien tal-matematika mal-Maltin billi torganizza lekċers u attivitajiet miftuħa għall-pubbliku. Matul iż-żminijiet, il-matematika qajla kienet attività solitarja. Is-Soċjetà Maltija tal-Matematika temmen li bil-kollaborazzjoni, bid-dibattitu, u bil-kurżità ta' kull individwu, il-matematika tista' timxi 'l quddiem. Il-viżjoni tagħna mhix biss li nippromwovu t-tagħrif matematiku, iżda wkoll li niċċelebraw l-aspett soċjali tal-matematika billi ngħaqqdu flimkien l-istudenti, l-akkademiċi, u lil dawk li jgħożżu dan is-suġġett tant sabiħ.
@@ -8,7 +10,7 @@ Fl-2019, Luke Collins, Jake Xuereb u Xandru Mifsud, li dak iż-żmien kienu stud
 
 L-MMS kompliet tikber u torganizza iktar attivitajiet informattivi u divertenti għall-pubbliku bħal korsijiet qosra li jintroduċu suġġetti partikolari, kwiżżijiet u laqgħat informali f'pubs, taħditiet minn matematiċi Maltin u barranin, u seminars. Is-soċjetà ħadet sehem ukoll fit-tieni edizzjoni tal-_YouTube Summer of Math Exposition_ fl-2022, u tipparteċipa lokalment b'mod attiv fil-festival tas-_Science in the City_ u fil-_Freshers Week_ tal-Università ta' Malta.
 
-## Kumitat Eżekuttiv
+## Kumitat Eżekuttiv  
 **President**: Michael Hall  
 **Segretarju Ġenerali**: Daniel Vella  
 **Teżorier**: Matthew Fenech  
@@ -17,7 +19,7 @@ L-MMS kompliet tikber u torganizza iktar attivitajiet informattivi u divertenti 
 **Uffiċjal tar-Relazzjonijiet Internazzjonali**: Liliana Francalanza  
 **Uffiċjal tal-Midja Soċjali u l-Marketing**: Marina Gusarov  
 
-## Membri Eżekuttivi
+## Membri Eżekuttivi  
 Karl Bartolo  
 Gabriel Camilleri  
 Karl Caruana  
