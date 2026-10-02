@@ -8,8 +8,7 @@ Fl-2019, Luke Collins, Jake Xuereb u Xandru Mifsud, li dak iż-żmien kienu stud
 
 L-MMS kompliet tikber u torganizza iktar attivitajiet informattivi u divertenti għall-pubbliku bħal korsijiet qosra li jintroduċu suġġetti partikolari, kwiżżijiet u laqgħat informali f'pubs, taħditiet minn matematiċi Maltin u barranin, u seminars. Is-soċjetà ħadet sehem ukoll fit-tieni edizzjoni tal-_YouTube Summer of Math Exposition_ fl-2022, u tipparteċipa lokalment b'mod attiv fil-festival tas-_Science in the City_ u fil-_Freshers Week_ tal-Università ta' Malta.
 
-### Kumitat Eżekuttiv
-
+## Kumitat Eżekuttiv
 **President**: Michael Hall  
 **Segretarju Ġenerali**: Daniel Vella  
 **Teżorier**: Matthew Fenech  
@@ -18,8 +17,7 @@ L-MMS kompliet tikber u torganizza iktar attivitajiet informattivi u divertenti 
 **Uffiċjal tar-Relazzjonijiet Internazzjonali**: Liliana Francalanza  
 **Uffiċjal tal-Midja Soċjali u l-Marketing**: Marina Gusarov  
 
-### Membri Eżekuttivi
-
+## Membri Eżekuttivi
 Karl Bartolo  
 Gabriel Camilleri  
 Karl Caruana  
