@@ -8,6 +8,6 @@ isLocationConfirmed = true
 locationPin = "https://maps.app.goo.gl/ttc3rwi69EeyKgDR7"
 +++
 
-Ejjew araw l-istand tagħna fil-KSU Freshers' Week 2026! Żurna biex tilgħabu logħbi, tiltaqgħu ma studenti oħrajn tal-matematika, u forsi ukoll tixtru membership!
+Żur l-istand tagħna waqt il-_KSU Freshers' Week_ 2026, għal diversi logħob, attivitajiet, u sabiex tiltaqgħu ma' studenti oħra tal-matematika. Tistgħu ukoll issiru membri tal-MMS waqt li tkunu fl-istand tagħna!
 
 ![Poster](Poster.jpeg)
