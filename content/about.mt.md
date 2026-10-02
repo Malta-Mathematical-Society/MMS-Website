@@ -1,7 +1,4 @@
-+++
-title = 'Dwarna'
-slug='dwarna'
-+++
+# Dwarna
 
 Is-Soċjetà Maltija tal-Matematika (MMS) hija soċjetà ibbażata f'Malta bl-iskop li żżid il-popolarità u l-għarfien tal-matematika mal-Maltin billi torganizza lekċers u attivitajiet miftuħa għall-pubbliku. Matul iż-żminijiet, il-matematika qajla kienet attività solitarja. Is-Soċjetà Maltija tal-Matematika temmen li bil-kollaborazzjoni, bid-dibattitu, u bil-kurżità ta' kull individwu, il-matematika tista' timxi 'l quddiem. Il-viżjoni tagħna mhix biss li nippromwovu t-tagħrif matematiku, iżda wkoll li niċċelebraw l-aspett soċjali tal-matematika billi ngħaqqdu flimkien l-istudenti, l-akkademiċi, u lil dawk li jgħożżu dan is-suġġett tant sabiħ.
 
