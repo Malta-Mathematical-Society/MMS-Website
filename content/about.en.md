@@ -10,7 +10,7 @@ In 2019, Luke Collins, Jake Xuereb and Xandru Mifsud, at that time students at t
 
 The MMS continued to flourish, hosting more entertaining and informative events to the general public such as short introductory courses, pub meets and quizzes, talks by both local and foreign mathematicians, and seminars. It also participated in the second edition of the YouTube Summer of Math Exposition (SoME) in 2022, and actively participates in the local Science in the City festival and in the University of Malta Freshers Week.
 
-## Executive Committee
+## Executive Committee  
 **President**: Michael Hall  
 **Secretary General**: Daniel Vella  
 **Treasurer**: Matthew Fenech  
@@ -19,7 +19,7 @@ The MMS continued to flourish, hosting more entertaining and informative events 
 **International Relations Officer**: Liliana Francalanza  
 **Social Media & Marketing Officer**: Marina Gusarov  
 
-## Executive Members
+## Executive Members  
 Karl Bartolo  
 Gabriel Camilleri  
 Karl Caruana  
