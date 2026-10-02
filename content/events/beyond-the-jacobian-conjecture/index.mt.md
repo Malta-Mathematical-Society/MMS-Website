@@ -8,6 +8,6 @@ locationPin = "https://maps.app.goo.gl/n4EsNDVuDKxuNvid6"
 isLocationConfirmed = true
 +++
 
-_Beyond the Jacobian Conjecture_ kien diskussjoni dwar l-IA fil-matematika, b'panelisti Prof. Joel Azzopardi, Dr. Alexander Farrugia, Prof. Josef Lauri and Prof. Joseph Muscat, u mmoderat minn Louie Cotter.
+_Beyond the Jacobian Conjecture_ (Lil hinn mill-_Jacobian Conjecture_) kienet diskussjoni dwar l-użu tal-intelliġenza artifiċjali fil-matematika. Il-membri tal-panel kienu l-Prof. Joel Azzopardi, Dr Alexander Farrugia, il-Prof. Josef Lauri u l-Prof. Joseph Muscat. Id-diskussjoni ġiet immoderata minn Louie Cotter.
 
 ![Poster](poster1.jpg)
