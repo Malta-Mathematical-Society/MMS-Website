@@ -2,6 +2,6 @@
 title = 'Soċjetà Maltija tal-Matematika'
 +++
 
-# Home Page
+# Paġna Ewlenija
 
 Merħba fil-paġna uffiċjali tas-**Soċjetà Maltija tal-Matematika**.
