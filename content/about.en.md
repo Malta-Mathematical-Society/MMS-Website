@@ -1,4 +1,6 @@
-+++ title = 'About' +++
++++
+title = 'About'
++++
 
 # About Us
 
