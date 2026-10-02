@@ -1,3 +1,5 @@
++++ title = 'About' +++
+
 # About Us
 
 The Malta Mathematical Society (MMS) is a mathematical society based in Malta, whose aim is to increase the awareness and popularity of mathematics among the Maltese populace by organising lectures and various events open to the general public. Throughout history, mathematics has rarely been a solitary pursuit. The Malta Mathematical Society believes that the discipline thrives through collaboration, debate, and a shared curiosity. Its vision is not only to promote mathematical knowledge, but also to celebrate its social side by bringing students, academics, and enthusiasts together. 
