@@ -1,7 +1,11 @@
 baseURL = 'https://mms.org.mt/'
 title = 'Malta Mathematical Society'
+email = 'maltamathematicalsociety@gmail.com'
+copyright = '© 2026 Malta Mathematical Society'
+
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubDir = true
+
 
 #for bilingualism rather than coding two websites we will use the inbuilt transaltion i18n folder,
 # which exists to translate static UI strings (like "Read More", "Subscribe", navigation menus, and footer text) 
@@ -10,12 +14,12 @@ defaultContentLanguageInSubDir = true
 #https://gohugo.io/configuration/languages/
 [languages]
   [languages.en]
-    locale = 'en-GB'
+    locale = 'en'
     label = 'English'
     weight = 1
   
   [languages.mt]
-    locale = 'mt-MT'
+    locale = 'mt'
     label = 'Malti'
     weight = 2
 
@@ -44,3 +48,12 @@ defaultContentLanguageInSubDir = true
     events = "199945241031083305"
     newsletters = "199945256381187925"
     comics = "199945281150650157"
+
+
+#RSS READER CONFIGS
+[services.rss]
+  limit = 15 # Hygiene limit: Keeps build fast & feed parsing lightweight
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

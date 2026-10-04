@@ -1,5 +1,5 @@
 +++
-title= "Subscription Confirmed / Is-Sottoskrizzjoni Konfermata"
+title = "Subscription Confirmed / Is-Sottoskrizzjoni Konfermata"
 url = "/confirmed/"
 +++
 

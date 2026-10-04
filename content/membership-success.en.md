@@ -1,4 +1,4 @@
 +++
-title = "Is-sħubija rnexxiet"
-slug = "shubija-rnexxiet"
+title = "Membership successful"
+slug = "membership-success"
 +++

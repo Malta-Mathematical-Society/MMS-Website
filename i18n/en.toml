@@ -53,4 +53,12 @@ other = "Subscribe"
 other = "Please select at least one category to subscribe to."
 
 [form_gdpr_notice]
-other = 'By subscribing, you agree to our <a href="%s" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. Unsubscribe anytime.'
+other = 'By subscribing, you agree to our <a href="%s" rel="noopener noreferrer">Privacy Policy</a>. Unsubscribe anytime.'
+
+[link_to_website_in_email]
+other = "View on website >"
+
+[unsubscribe]
+other = "Unsubscribe"
+
+

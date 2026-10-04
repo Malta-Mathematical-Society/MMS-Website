@@ -4,6 +4,7 @@ slug = 1
 date = 2025-07-03
 alt = "Proof left as an exercise to the reader"
 post = ""
+send_email = false  # <--- Safety toggle! Set to false to mute.
 +++
 
 ![Comic Panel](comic.jpg)

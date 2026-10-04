@@ -1,0 +1,92 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+
+{{/*
+this code was copied from https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/rss.xml
+#which is the default rss, so the following is an edit of the above link.
+*/}}
+
+{{- $authorEmail := "" }} {{/* declare local variable */}}
+{{- $authorName := "" }}
+{{- $pctx := . }} {{/* declare the local var page context variable*/}}
+ {{/* declare local var, a list/array of Page objects that can only bee an existing category */}}
+{{- $pages := where .Site.RegularPages "Section" "in" (slice "comics" "events" "newsletters") -}}
+{{- $limit := .Site.Config.Services.RSS.Limit }} {{/* extract page limit from hugo.toml*/}}
+
+{{- with site.Params.author }}
+    {{- if reflect.IsMap . }}
+        {{- with .email }}{{ $authorEmail = . }}{{ end }} {{/* asssign local var*/}}
+    {{- end }}
+{{- end }}
+
+{{- with site.Params.author }}
+    {{- if reflect.IsMap . }}
+        {{- with .name }}{{ $authorName = . }}{{ end }}
+    {{- else }}
+        {{- $authorName = . }}
+    {{- end }}
+{{- end }}
+
+{{/* 1. WHERE shall we pull from?  */}}
+{{- if .IsHome }}
+    {{ $pctx = .Site }} {{/* 1. if hoem page, give it view from root folder to access content list pages  */}}
+{{- else }}
+    {{- $pctx = . }}     {{/* 3. if content page, set the current 'root' to the content folder, like comics/index */}}
+{{ end }}
+
+{{/* 2. WHAT shall we pull?  */}}
+{{- if or $.IsHome $.IsSection }}
+    {{- $pages = $pctx.RegularPages }}  {{/* 4. Populate $pages with the markdown file extracted from conent feed or home/master feed*/}}
+{{- else }}
+    {{- $pages = $pctx.Pages }}
+{{- end }}
+
+{{/* 3. Filter out send_email: false BEFORE applying $limit */}}
+{{- $pages = where $pages "Params.send_email" "!=" false }}
+
+{{/* 4. apply limis so we have most recent $limit posts */}}
+{{- if ge $limit 1 }}
+    {{- $pages = $pages | first $limit }} {{/*crop $pages list if limit breaks*/}}
+{{- end }}
+
+<rss version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        {{/*figure out what the title is do .Title and .Site.Title arent the same*/}}
+        <title>{{- if eq .Title .Site.Title }}{{- .Site.Title }}{{- else }}{{ with .Title }}{{ . }} on {{ end }}{{ .Site.Title }}{{- end }}</title>
+        <link>{{ .Permalink }}</link>
+        <description>Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>{{ site.Language.Locale }}</language>
+        {{ with $authorEmail }}<managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}
+        {{ with $authorEmail }}<webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}
+        {{ with .Site.Copyright }}<copyright>{{ . }}</copyright>{{ end }}
+        <website_link_text>{{ i18n "link_to_website_in_email" }}</website_link_text>
+        <unsubscribe_text>{{ i18n "unsubscribe" }}</unsubscribe_text>
+        
+        {{- if and (not .Date.IsZero) (gt (len $pages) 0) }}
+            <lastBuildDate> {{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }} </lastBuildDate>
+        {{- else }}
+            {{- warnf "=^.^= <3 Custom RSS Feed Warning from rss.xml: No eligible posts found for section '%s' (%s)" .Title .Permalink }}
+        {{- end }}
+
+        {{- with .OutputFormats.Get "RSS" }}
+        {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+        {{- end }}
+        
+        {{- range $pages }}
+            <item>
+                <title>{{ .Title }}</title>
+                <link>{{ .Permalink }}</link>
+                <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+                {{ with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
+                <guid>{{ .Permalink }}</guid>
+                <category>{{ .Section }}</category>  {{/* CATEGORY */}} 
+                {{/* Keep description for plain text previews if needed */}}
+                <description>{{ .Summary | html }}</description>
+                {{/* Add full HTML body for your Python script to inject into MailerLite */}}
+                <content:encoded>{{ .Content | html }}</content:encoded>
+            </item>
+        {{- end }}
+    </channel>
+</rss>

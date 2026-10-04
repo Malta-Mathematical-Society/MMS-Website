@@ -2,4 +2,4 @@
 title: "Politika ta' Privatezza"
 ---
 
-[wip]
+[wip, please read the english one for now! ]
