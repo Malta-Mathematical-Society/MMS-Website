@@ -52,3 +52,6 @@ other = "Abbona"
 
 [mailing_validation_error]
 other = "Jekk jogħġbok agħżel mill-inqas kategorija waħda."
+
+[form_gdpr_notice]
+other = '''Billi tissottoskrivi, inti taqbel mal-<a href="%s" target="_blank" rel="noopener noreferrer">Politika ta' Privatezza</a> tagħna. Tista\' tħassar fi kwalunkwe ħin.'''

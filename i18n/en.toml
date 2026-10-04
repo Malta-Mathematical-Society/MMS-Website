@@ -51,3 +51,6 @@ other = "Subscribe"
 
 [mailing_validation_error]
 other = "Please select at least one category to subscribe to."
+
+[form_gdpr_notice]
+other = 'By subscribing, you agree to our <a href="%s" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. Unsubscribe anytime.'

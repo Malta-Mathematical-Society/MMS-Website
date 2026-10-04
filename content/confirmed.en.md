@@ -1,7 +1,6 @@
 +++
 title= "Subscription Confirmed / Is-Sottoskrizzjoni Konfermata"
-url = "/en/confirmed/"
-aliases = ["/confirmed/"]
+url = "/confirmed/"
 +++
 
 # Grazzi li abbonajt! / Thank you for subscribing!

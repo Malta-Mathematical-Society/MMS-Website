@@ -49,10 +49,16 @@
             {{ i18n "mailing_cat_comics" }}
         </label>
         </div>
+        
+        <p class="privacy-notice">
+        {{ printf (i18n "form_gdpr_notice") ("/privacy/" | relLangURL) | safeHTML }}
+        </p>
+    
 
-      <button type="submit" class="btn-subscribe">{{ i18n "mailing_submit" }}</button>
+        <button type="submit" class="btn-subscribe">{{ i18n "mailing_submit" }}</button>
     </form>
   </div>
+  
 </section>
 
 <!-- respond to Mailerlite's response regarding submitted form -->
