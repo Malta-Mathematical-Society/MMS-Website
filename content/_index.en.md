@@ -2,6 +2,6 @@
 title = 'Malta Mathematical Society'
 +++
 
-# Home Page
+# Malta Mathematical Society
 
 Welcome to the official webpage of the **Malta Mathematical Society**.
