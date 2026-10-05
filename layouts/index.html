@@ -1,34 +1,3 @@
 {{ define "main" }}
     {{ .Content }}
-
-    <h2>{{ i18n "upcoming_events" }}</h2>
-    <ul>
-        {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
-
-            {{/* show should be true if isDateConfirmed is false and/or the date is in the future, and if the event is not a draft */}}
-            {{ $isDateConfirmed := .Params.isDateConfirmed }}
-            {{ $isDraft := .Params.draft }}
-            {{ $show := false }}
-            {{ if eq $isDateConfirmed false }}
-                {{ $show = true }}
-            {{ else if .Params.enddate }}
-                {{ if (time.AsTime .Params.enddate).After now }}
-                    {{ $show = true }}
-                {{ end }}
-            {{ end }}
-
-            {{ if eq $isDraft true }}
-                {{ $show = false }}
-            {{ end }}
-
-            {{ if $show }}
-                <li>
-                    <a href="{{ .RelPermalink }}">
-                        {{ if .Params.startdate }}{{ (time.AsTime .Params.startdate).Format "02 Jan, 2006" }} - {{ end }}{{ .Title }}
-                    </a>
-                </li>
-            {{ end }}
-        {{ end }}
-    </ul>
-
 {{ end }}

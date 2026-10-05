@@ -33,32 +33,6 @@
     {{ with .Site.GetPage "/about" }}
       <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
     {{ end }}
-
-    {{ with .Site.GetPage "/membership" }}
-      <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
-    {{ end }}
-
-    {{ with .Site.GetPage "/mailing-list" }}
-      <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
-    {{ end }}
-
-    <!-- Archive Dropdown -->
-    <div class="dropdown">
-      <span class="dropdown-title">{{ i18n "nav_archive" }} &#9662;</span>
-      <div class="dropdown-content">
-        {{ with .Site.GetPage "/events" }}
-          <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
-        {{ end }}
-        
-        {{ with .Site.GetPage "/comics" }}
-          <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
-        {{ end }}
-
-        {{ with .Site.GetPage "/newsletters" }}
-          <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
-        {{ end }}
-      </div>
-    </div>
   </nav>
 
 </div>
