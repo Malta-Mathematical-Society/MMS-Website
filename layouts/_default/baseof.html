@@ -13,10 +13,8 @@
   <!--preview for linking-->
   {{- partial "seo_tags.html" . -}}
 
-  <!--for RSS readers-->
-  {{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
+  <!--for RSS readers, only generate for content-->
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} Feed">
 
 
   {{- partial "style.html" . -}}

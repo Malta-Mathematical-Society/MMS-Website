@@ -5,42 +5,28 @@ this code was copied from https://github.com/gohugoio/hugo/blob/master/tpl/tplim
 #which is the default rss, so the following is an edit of the above link.
 */}}
 
-{{- $authorEmail := "" }} {{/* declare local variable */}}
-{{- $authorName := "" }}
-{{- $pctx := . }} {{/* declare the local var page context variable*/}}
- {{/* declare local var, a list/array of Page objects that can only bee an existing category */}}
-{{- $pages := where .Site.RegularPages "Section" "in" (slice "comics" "events" "newsletters") -}}
+{{/* Define all valid sections allowed on your site */}}
+{{- $allowedSections := slice "comics" "events" "newsletters"}} 
+
+{{/* 1. Define required that can accidentally be forgotten in hugo.toml */}}
+{{- $requiredConfig := dict
+    "email"         site.Params.email
+    "name"          site.Title
+    "copyright"     site.Copyright
+-}}
+
+{{/* 2. Fail the build immediately if any field is missing or empty */}}
+{{- range $key, $value := $requiredConfig }}
+    {{- if not $value }}
+        {{- errorf "=^.^= RSS ERROR: Missing required configuration '%s' in hugo.toml!" $key }}
+    {{- end }}
+{{- end }}
+
+{{/* 3. Extract validated variables */}}
 {{- $limit := .Site.Config.Services.RSS.Limit }} {{/* extract page limit from hugo.toml*/}}
+{{- $pages := where .Site.RegularPages "Section" "in" $allowedSections) -}}
 
-{{- with site.Params.author }}
-    {{- if reflect.IsMap . }}
-        {{- with .email }}{{ $authorEmail = . }}{{ end }} {{/* asssign local var*/}}
-    {{- end }}
-{{- end }}
-
-{{- with site.Params.author }}
-    {{- if reflect.IsMap . }}
-        {{- with .name }}{{ $authorName = . }}{{ end }}
-    {{- else }}
-        {{- $authorName = . }}
-    {{- end }}
-{{- end }}
-
-{{/* 1. WHERE shall we pull from?  */}}
-{{- if .IsHome }}
-    {{ $pctx = .Site }} {{/* 1. if hoem page, give it view from root folder to access content list pages  */}}
-{{- else }}
-    {{- $pctx = . }}     {{/* 3. if content page, set the current 'root' to the content folder, like comics/index */}}
-{{ end }}
-
-{{/* 2. WHAT shall we pull?  */}}
-{{- if or $.IsHome $.IsSection }}
-    {{- $pages = $pctx.RegularPages }}  {{/* 4. Populate $pages with the markdown file extracted from conent feed or home/master feed*/}}
-{{- else }}
-    {{- $pages = $pctx.Pages }}
-{{- end }}
-
-{{/* 3. Filter out send_email: false BEFORE applying $limit */}}
+{{/* 3. Filter out send_email: false */}}
 {{- $pages = where $pages "Params.send_email" "!=" false }}
 
 {{/* 4. apply limis so we have most recent $limit posts */}}
@@ -52,17 +38,17 @@ this code was copied from https://github.com/gohugoio/hugo/blob/master/tpl/tplim
     xmlns:atom="http://www.w3.org/2005/Atom"
     xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        {{/*figure out what the title is do .Title and .Site.Title arent the same*/}}
-        <title>{{- if eq .Title .Site.Title }}{{- .Site.Title }}{{- else }}{{ with .Title }}{{ . }} on {{ end }}{{ .Site.Title }}{{- end }}</title>
+        <title>{{ .Title }}</title>
         <link>{{ .Permalink }}</link>
-        <description>Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+        <description>Recent {{ .Title }} content on {{ site.Title }}</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>{{ site.Language.Locale }}</language>
-        {{ with $authorEmail }}<managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}
-        {{ with $authorEmail }}<webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}
-        {{ with .Site.Copyright }}<copyright>{{ . }}</copyright>{{ end }}
+        <language>{{ site.Language.Locale }}</language>{{ site.Params.email }}
+        <copyright>{{ site.Copyright }}</copyright>
         <website_link_text>{{ i18n "link_to_website_in_email" }}</website_link_text>
         <unsubscribe_text>{{ i18n "unsubscribe" }}</unsubscribe_text>
+        <!--Hugo standardization specifications require managingEditor and webMaster... so sure why not.-->
+        <managingEditor>{{ site.Params.email }}({{ .Title }})</managingEditor>
+        <webMaster> {{ site.Params.email }}({{ .Title }}) </webMaster>
         
         {{- if and (not .Date.IsZero) (gt (len $pages) 0) }}
             <lastBuildDate> {{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }} </lastBuildDate>
@@ -76,11 +62,11 @@ this code was copied from https://github.com/gohugoio/hugo/blob/master/tpl/tplim
         
         {{- range $pages }}
             <item>
-                <title>{{ .Title }}</title>
+                <title>{{ .Title }}</title> <!--for human presentation-->
                 <link>{{ .Permalink }}</link>
                 <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-                {{ with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
-                <guid>{{ .Permalink }}</guid>
+                <author>{{ $authorName }}</author>
+                <guid>{{ .Permalink }}</guid> <!--for database to compare against-->
                 <category>{{ .Section }}</category>  {{/* CATEGORY */}} 
                 {{/* Keep description for plain text previews if needed */}}
                 <description>{{ .Summary | html }}</description>
