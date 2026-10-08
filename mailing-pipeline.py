@@ -109,7 +109,7 @@ def main():
         # 2. Determine target MailerLite group
         target_group = SEGMENT_MAP.get(category.lower(), {}).get(lang.lower())
         if not target_group:
-            print(f"❌AAAA!!!❌ No group mapping found for lang='{lang}' and category='{category}'. Skipping '{title}'.")
+            print(f"❌ Hey! No group mapping found for lang='{lang}' and category='{category}'. Skipping '{title}'. Emails should only be generating for allowed categories, as defined in hugo.toml!")
             continue
 
         print(f"Processing new post: '{title}' [{lang}/{category}]")
@@ -124,8 +124,8 @@ def main():
                 f.write(email_html)
                     
             print(f" [DRY RUN SUCCESS] Validated '{title}' [{lang}/{category}]")
-            print(f"   ↳ Would dispatch to MailerLite Group ID: {target_group}")
-            print(f"   ↳ Saved email preview to: {preview_filename}\n")
+            print(f"   > Would dispatch to MailerLite Group ID: {target_group}")
+            print(f"   > Saved email preview to: {preview_filename}\n")
             continue  # Do NOT call MailerLite or write to post_history.json
 
         success = send_to_mailerlite(title, email_html, target_group)
