@@ -1,10 +1,17 @@
-baseURL = 'https://mms.org.mt/'
-title = 'Malta Mathematical Society'
-email = 'maltamathematicalsociety@gmail.com'
-copyright = '© 2026 Malta Mathematical Society'
+# variables that Hugo converts automatically
+baseURL = 'https://mms.org.mt/' #site.BaseURL
+title = 'Malta Mathematical Society' #site.Title
+copyright = '© 2026 Malta Mathematical Society' #site.Copyright
 
-defaultContentLanguage = 'en'
+defaultContentLanguage = 'en' 
 defaultContentLanguageInSubDir = true
+
+# Custom site-wide variables belong here!
+[params]
+  email = 'maltamathematicalsociety@gmail.com' #site.Params.email
+  #decide on icon file here to be used in baseof.html
+  browserIcon = "logo-only-color-borderless.png" #used in badeof.html
+  homeIcon = "logo-primary-color-light-background-borderless.svg" #used in header.html
 
 
 #for bilingualism rather than coding two websites we will use the inbuilt transaltion i18n folder,
@@ -14,7 +21,7 @@ defaultContentLanguageInSubDir = true
 #https://gohugo.io/configuration/languages/
 [languages]
   [languages.en]
-    locale = 'en'
+    locale = 'en' #site.Locale
     label = 'English'
     weight = 1
   
@@ -34,26 +41,22 @@ defaultContentLanguageInSubDir = true
   newsletters = '/aħbarijiet/:slug/'
 
 
-
-#decide on icon file here to be used in baseof.html
-[params]
-  browserIcon = "logo-only-color-borderless.png" #used in badeof.html
-  homeIcon = "logo-primary-color-light-background-borderless.svg" #used in header.html
-
 #all hardcoded referenced links for the Mailing List here
 [params.mailerlite]
   action_url = "https://assets.mailerlite.com/jsonp/2669609/forms/199945518538819358/subscribe"
 
-  [params.mailerlite.groups]
-    events = "199945241031083305"
-    newsletters = "199945256381187925"
-    comics = "199945281150650157"
-
-
-#RSS READER CONFIGS
-[services.rss]
-  limit = 15 # Hygiene limit: Keeps build fast & feed parsing lightweight
+[outputFormats]
+  [outputFormats.Email]
+    mediaType = "application/json"
+    baseName = "email"
 
 [outputs]
   home = ["HTML", "RSS"]
   section = ["HTML", "RSS"]
+  page = ["HTML"] 
+
+# Only generate email.json inside comics, newsletters, and events
+[[cascade]]
+  outputs = ["HTML", "Email"]
+  [cascade.target]
+    path = "/{comics,newsletters,events}/**"
