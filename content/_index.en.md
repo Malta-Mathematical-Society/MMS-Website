@@ -2,6 +2,6 @@
 title = 'Malta Mathematical Society'
 +++
 
-# Home Page
+# Malta Mathematical Society
 
-This is our really cool draft home page.
+Welcome to the official webpage of the **Malta Mathematical Society**.

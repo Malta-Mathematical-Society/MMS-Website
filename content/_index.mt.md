@@ -2,6 +2,6 @@
 title = 'Soċjetà Maltija tal-Matematika'
 +++
 
-# Home Page
+# Soċjetà Maltija tal-Matematika
 
-Dan huwa d-draft home page vera faqa tagħna. 
+Merħba fil-paġna uffiċjali tas-**Soċjetà Maltija tal-Matematika**.

@@ -1,6 +1,7 @@
 +++
-title = 'Irreġistra mal-lista tal-mailing tagħna'
-slug = 'lista-tal-mailing'
+title = 'Lista tal-Email'
+slug = 'Lista tal-Email'
 +++
 
-{{< mailing-list >}}
+Irreġistra hawn biex tirċievi emails b'aktar tagħrif.
+    

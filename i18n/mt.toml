@@ -6,7 +6,7 @@ other = "Dwarna"
 other = "Sir Membru"
 
 [nav_mailing_list]
-other = "Mailing List"
+other = "Lista tal-Email"
 
 [nav_archive]
 other = "Arkivju"
@@ -16,10 +16,10 @@ other = "Arkivju"
 other = "Komiks"
 
 [nav_events]
-other = "Attivitajiet"
+other = "Attivitajiet li Diġà Seħħew"
 
 [nav_newsletters]
-other = "Bulletti"
+other = "Bullettini"
 
 # Headers and Titles
 [upcoming_events]
