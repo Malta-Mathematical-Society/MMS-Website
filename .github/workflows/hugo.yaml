@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: [ "wip-display" ]
+    branches: [ "master" ]
   workflow_dispatch:
   schedule:
     - cron: "0 22 * * *"
