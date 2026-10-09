@@ -8,7 +8,6 @@ todo*.md
 /public/
 /resources/_gen/
 hugo_stats.json
-.env
 
 # OS / editor cruft
 .DS_Store
@@ -17,4 +16,4 @@ Thumbs.db
 .idea/
 
 # wireit
-.wireitpreview_*.html
+.wireit

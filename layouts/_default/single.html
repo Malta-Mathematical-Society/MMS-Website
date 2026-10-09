@@ -1,7 +1,6 @@
 {{ define "main" }}
+{{ if eq .Type "blog" }}{{ if not .Params.menu }}
 <h1>{{ .Title }}</h1>
-
-{{ if eq .Type "blog" }}
 <p>
   <i>
     <time datetime='{{ .Date.Format "2006-01-02" }}'>
@@ -9,11 +8,10 @@
     </time>
   </i>
 </p>
-{{ end }}
-
-<div class="content">
+{{ end }}{{ end }}
+<content>
   {{ .Content }}
-</div>
+</content>
 
 {{ if eq .Type "blog" }}{{ if (.Param "enablePostNavigator")}}
 {{- partial "post_navigator.html" . -}}
