@@ -1,0 +1,88 @@
+{{ $lang := .Page.Language.Lang }}
+{{ $ml := site.Params.mailerlite }} <!--get Mailerlite config from hugo.toml-->
+
+<section class="mailing-list-section">
+  <div class="mailing-list-container">
+    <h3>{{ i18n "mailing_title" }}</h3> <!--grab the sentence in the right language-->
+    <p>{{ i18n "mailing_subtitle" }}</p>
+
+    <form id="mailing-list-form" action="{{ $ml.action_url }}" method="POST">
+        <div class="form-group">
+            <label for="ml-email">{{ i18n "mailing_email_label" }}</label>
+            {{/*
+                typid=e=... triggers automatic validation on submit
+                id=... provides some automatic stuff depending on id
+                name=.. is the REQUIRED MAPKEY for our mailing service MailerLite to recognize the email field
+            */}}
+            <input 
+            type="email" 
+            id="ml-email" 
+            name="fields[email]" 
+            required placeholder="rightback@you.edu"> 
+        </div>
+
+        <!-- Here we pass onto the language the user was browsing in -->
+        <input 
+        type="hidden" 
+        name="fields[language]" 
+        value="{{ $lang }}">
+
+        <div class="form-group categories">
+        <p class="category-title">{{ i18n "mailing_categories_label" }}</p>
+        
+        <label class="checkbox-label">
+            <input type="checkbox" class="category-cb" name="groups[]" value="{{ $ml.groups.newsletters }}" checked required> 
+            {{ i18n "mailing_cat_newsletters" }}
+        </label>
+
+        <label class="checkbox-label">
+            <input 
+            type="checkbox"
+            class="category-cb"
+            name="groups[]"
+            value="{{ $ml.groups.events }}"> 
+            {{ i18n "mailing_cat_events" }}
+        </label>
+
+        <label class="checkbox-label">
+            <input type="checkbox" class="category-cb" name="groups[]" value="{{ $ml.groups.comics }}"> 
+            {{ i18n "mailing_cat_comics" }}
+        </label>
+        </div>
+        
+        <p class="privacy-notice">
+        {{ printf (i18n "form_gdpr_notice") ("/privacy/" | relLangURL) | safeHTML }}
+        </p>
+    
+
+        <button type="submit" class="btn-subscribe">{{ i18n "mailing_submit" }}</button>
+    </form>
+  </div>
+  
+</section>
+
+<!-- respond to Mailerlite's response regarding submitted form -->
+<script>
+  document.getElementById('mailing-list-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    try {
+        const res = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+      
+        if (res.ok) {
+            {{ with site.GetPage "email" }}
+            window.location.href = '{{ .RelPermalink }}';
+            {{ end }}
+        } else {
+            alert('There was an issue processing your subscription. Please try again.');
+        }
+    } catch (err) {
+        alert('Network error. Please check your connection.');
+    }
+  });
+</script>

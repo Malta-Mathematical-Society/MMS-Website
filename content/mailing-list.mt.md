@@ -1,6 +1,6 @@
 +++
 title = 'Lista tal-Email'
-slug = 'In-nies reġistrati biex jirċievu aktar tagħrif'
+slug = 'Lista tal-Email'
 +++
 
 Irreġistra hawn biex tirċievi emails b'aktar tagħrif.

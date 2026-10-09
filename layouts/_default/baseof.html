@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Language.Lang }}"> <!-- maltese or eng is stored in Lang-->
+<html lang="{{ .Language.Name }}"> <!-- maltese or eng is stored in Lang-->
 <head> <!--METADATA-->
   <meta charset="utf-8"> <!--character encoding for them maltese letters-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--set page to screen's width (different devices)-->
@@ -13,10 +13,8 @@
   <!--preview for linking-->
   {{- partial "seo_tags.html" . -}}
 
-  <!--for RSS readers-->
-  {{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
+  <!--for RSS readers, only generate for content-->
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} Feed">
 
 
   {{- partial "style.html" . -}}
