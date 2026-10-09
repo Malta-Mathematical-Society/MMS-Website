@@ -7,7 +7,8 @@ post = ""
 
 ![Comic Panel](comic.jpg)
 
-{{< details "Il-Transcript" >}}
-* **Il-panel 1:** ...
-* **Il-panel 2:** ...
-{{< /details >}}
+<details>
+<summary<b>Il-transcriptu mela</b></summary>
+* **Panel 1:** 
+* **Panel 2:** 
+</details>

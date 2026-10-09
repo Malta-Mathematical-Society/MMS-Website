@@ -2,30 +2,31 @@
 <div class = "header-stripe"> 
   <!-- Webpage Header Logo + language toggle -->
   <div class="header-left">
-    {{ with site.Params.homeIcon }}
-      <a href="{{ site.Home.RelPermalink }}">
-        <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo" />
+    {{ with .Site.Params.homeIcon }}
+      <a href="{{ $.Site.Home.RelPermalink }}">
+        <img src="{{ . | absURL }}" alt="{{ $.Site.Title }}" class="site-logo" />
       </a>
     {{ end }}
-    {{if .IsTranslated}}
-      <div class="lang-switch">
-        {{ $currentPage := . }}
-        {{ range site.Languages }}
-          {{ $langCode := .Name }}
-          {{ $langLabel := .Name }}
-          {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
-          
-          {{ if $match }}
-            {{ $translatedPage := index $match 0 }}
-            <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
-              {{ $langLabel }}
-            </a>
-          {{ end }}
-        {{ end }}
-      </div>
+
+  <div class="lang-switch">
+    {{ $currentPage := . }}
+    {{ range .Site.Languages }}
+      {{ $langCode := .Lang }}
+      {{ $langLabel := .Label }}
+      {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
+      
+      {{ if $match }}
+        {{ $translatedPage := index $match 0 }}
+        <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
+          {{ $langLabel }}
+        </a>
+      {{ else }}
+        <span class="lang-disabled" title="{{ i18n "not_translated" }}">
+          {{ $langLabel }} ({{ i18n "not_translated" }})
+        </span>
+      {{ end }}
     {{ end }}
   </div>
-  
 
 <!-- Global Navigation Links -->
   <nav class="site-nav">
@@ -33,29 +34,27 @@
       <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
     {{ end }}
 
-    {{ with site.GetPage "/membership" }}
+    {{ with .Site.GetPage "/membership" }}
       <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
     {{ end }}
 
-    {{ with site.GetPage "/mailing-list" }}
+    {{ with .Site.GetPage "/mailing-list" }}
       <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
     {{ end }}
 
     <!-- Archive Dropdown -->
     <div class="dropdown">
-      <button class="dropdown-title" type="button" aria-expanded="false">
-        {{ i18n "nav_archive" }}
-      </button>
+      <span class="dropdown-title">{{ i18n "nav_archive" }} &#9662;</span>
       <div class="dropdown-content">
-        {{ with site.GetPage "/events" }}
+        {{ with .Site.GetPage "/events" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
         {{ end }}
         
-        {{ with site.GetPage "/comics" }}
+        {{ with .Site.GetPage "/comics" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
         {{ end }}
 
-        {{ with site.GetPage "/newsletters" }}
+        {{ with .Site.GetPage "/newsletters" }}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
         {{ end }}
       </div>
