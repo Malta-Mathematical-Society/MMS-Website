@@ -30,7 +30,7 @@
   }
 
   body {
-    zoom: 1.3;
+    zoom: 1.5;
     font-family: var(--font-secondary);
     font-size: var(--font-scale);
     margin: 0;
@@ -387,29 +387,32 @@
   background-color: #e5e7eb;
   border: 0px #e5e7eb;
   border-radius: 3px;
+  margin: 1rem 1rem;
+}
+
+.box h2 {
+  padding: 10px 15px;
 }
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
 .comic-preview {
-  margin: 2rem 0;
-  max-width: 420px;
+  max-width: 480px;
   /* Pushes the card to the RIGHT side of the page */
   /* Format: margin: [top] [right] [bottom] [left] */
   /* Setting left margin to 'auto' and right to '0' aligns it right */
-  margin: 2rem 0 2rem auto;
-
 }
 
 /* Flexbox wrapper to center the comic image within the box */
 .comic-image-wrapper {
+  width: 100%;
   overflow-x: auto;
   text-align: center;
   scrollbar-width: thin; 
 }
 
 .comic-img {
-  max-width: 1000;
+  max-width: 1000px;
   width: 100%;
   min-width: 480px;
   height: auto;

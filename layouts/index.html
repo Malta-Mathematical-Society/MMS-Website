@@ -34,6 +34,7 @@
     </article>
 
     <article class="comic-preview box">
+        <h2>{{ i18n "latest_comic" }}</h2>
         {{ $latest := index (where .Site.RegularPages "Type" "comics").ByDate.Reverse 0 }}
         {{ with $latest }}
             {{ partial "comic-viewer.html" . }}
