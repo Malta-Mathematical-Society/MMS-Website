@@ -1,0 +1,21 @@
+{{ define "main" }}
+  
+  <div style="text-align: center; padding: 10vh 0;">
+    <h2>Rolling the dice...</h2>
+  </div>
+
+  <script>
+    // 1. Get the total number of comics for this specific language
+    const totalComics = {{ len (where .Site.RegularPages "Section" "comics") }};
+    
+    // 2. Pick a random number between 1 and the total
+    const randomNum = Math.floor(Math.random() * totalComics) + 1;
+    
+    // 3. Get the correct base URL for the current language (e.g., "/en/comics/")
+    const baseUrl = "{{ "comics/" | relLangURL }}";
+    
+    // 4. Redirect the browser!
+    window.location.replace(baseUrl + randomNum + "/");
+  </script>
+
+{{ end }}

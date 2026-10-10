@@ -1,18 +1,5 @@
 {{ define "main" }}
-<article class="comic-post">
-  <h1>{{ .Title }}</h1>
-  
-  <!-- Image container enforcing the CSS height limit -->
-  <div class="comic-content">
-    {{ .Content }}
+  <div class="full-comic-reader">
+    {{ partial "comic-viewer.html" . }}
   </div>
-
-  <!-- Transcript block (rendered if defined in Front Matter) -->
-  {{ with .Params.transcript }}
-  <details class="comic-transcript">
-    <summary><strong>Read Transcript</strong></summary>
-    <p>{{ . | markdownify }}</p>
-  </details>
-  {{ end }}
-</article>
 {{ end }}

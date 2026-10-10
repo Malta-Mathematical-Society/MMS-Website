@@ -33,7 +33,7 @@
     font-family: var(--font-secondary);
     font-size: var(--font-scale);
     margin: 0;
-    padding: 0px;
+    padding: 1px;
     text-align: left;
     background-color: var(--background-color);
     overflow-wrap: break-word;
@@ -43,9 +43,9 @@
 
   main {
     max-width: var(--width);
-    margin: auto;
-    padding: 10px;
-    line-height: 1.6;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    line-height: 1.4;
   }
 
   img {
@@ -57,9 +57,11 @@
 /* ==========================================================================
    2. TYPOGRAHY & BASE HTML ELEMENTS
    ========================================================================== */
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5,h6,p,ul,ol{
     font-family: var(--font-main);
     color: var(--heading-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
   }
 
   a {
@@ -70,10 +72,6 @@
 
   a:hover {
     text-decoration: underline;
-  }
-
-  nav a {
-    margin-right: 8px;
   }
 
   strong,
@@ -332,14 +330,6 @@
     color: var(--visited-color);
   }
 
-  .comic-content img {
-    max-height: 80vh;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
 
   /*MAILING-LIST PAGE STYLING*/
   .checkbox-label {
@@ -381,6 +371,104 @@
     opacity: 0.85;
   }
 }
+/* ==========================================================================
+   6. MAIN PAGE
+   ========================================================================== */
+.home-grid {
+  display: grid;
+  }
+
+.box {
+  background-color: #e5e7eb;
+  border: 0px #e5e7eb;
+  border-radius: 3px;
+}
+/* ==========================================================================
+   7. COMIC VIEWER
+   ========================================================================== */
+.comic-preview {
+  margin: 2rem 0;
+  max-width: 420px;
+  /* Pushes the card to the RIGHT side of the page */
+  /* Format: margin: [top] [right] [bottom] [left] */
+  /* Setting left margin to 'auto' and right to '0' aligns it right */
+  margin: 2rem 0 2rem auto;
+
+}
+
+/* Flexbox wrapper to center the comic image within the box */
+.comic-image-wrapper {
+  overflow-x: auto;
+  text-align: center;
+  scrollbar-width: thin; 
+}
+
+.comic-img {
+  max-width: 1000;
+  width: 100%;
+  min-width: 480px;
+  height: auto;
+  display: block;
+}
+
+.comic-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem; /* Space between buttons side-by-side */
+  font-variant: small-caps;  /* EDIT THESE VALUES to control space above and below nav bars: */
+  margin-top: 1rem;    /* <-- Space ABOVE the nav bar */
+  margin-bottom: 1rem; /* <-- Space BELOW the nav bar */
+}
+
+.comic-nav a,
+.comic-nav .disabled {
+  background-color: #0072ce;
+  /* Clean white button text */
+  color: #ffffff;
+  /* Subtle border outline for button structure */
+  border: 1.5px solid #000000;
+  /* Very tight padding gives xkcd's signature compact button dimensions */
+  padding: 0.2rem 0.65rem;
+  /* Subtle corner rounding (xkcd uses 3px - 4px) */
+  border-radius: 6px;
+  /* Font sizing and text alignment */
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 1.2;
+  white-space: nowrap; /*no squish*/
+  flex-shrink: 0;/*no squish*/
+}
+
+/* press button */
+.comic-nav a:active {
+  filter: brightness(0.8);
+}
+
+/* 4. Disabled button state (First/Prev on page 1, Next/Latest on latest page) */
+.comic-nav .disabled {
+  /* Fades out disabled buttons while preserving button box shape */
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.comic-transcript{
+  margin-top: 0;
+  padding: 1rem 3rem;
+}
+
+.full-comic-reader{
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* If the main tag contains the comic reader, override the 3rem margin and center it */
+main:has(.full-comic-reader) {
+  margin: 0 auto;
+  padding: 0; 
+}
 
 </style>
-

@@ -2,7 +2,7 @@
 title = "Computer Science in Maths?"
 slug = 4
 date = 2026-03-02
-alt = ""
+alt = ":)"
 transcript = '''
 The professor is writing on the board, obscuring it.
 Prof: "A vector v can be written in R."

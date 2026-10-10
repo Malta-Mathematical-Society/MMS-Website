@@ -1,0 +1,20 @@
+{{ partial "postnav.html" . }}
+
+  <div class="comic-image-wrapper">
+    {{ $img := .Resources.GetMatch "comic*" }}
+    {{ if $img }}
+      <img src="{{ $img.RelPermalink }}" 
+      alt="{{ .Params.alt }}"
+      title="{{ .Params.alt }}"
+      class="comic-img">
+    {{ end }}
+  </div>
+
+  {{ partial "postnav.html" . }}
+
+  {{ if .Params.transcript }}
+    <details class="comic-transcript">
+      <summary>Transcript</summary>
+      <pre>{{ .Params.transcript }}</pre>
+    </details>
+  {{ end }}
