@@ -71,7 +71,7 @@
   }
 
   a:hover {
-    text-decoration: underline;
+    color: var(--visited-color);
   }
 
   strong,
@@ -177,7 +177,7 @@
 }
 
 .site-nav a:hover {
-  text-decoration: underline;
+    color: var(--visited-color);
 }
 
 /* Dropdown Container */
@@ -194,17 +194,29 @@
   color: var(--link-color);
   padding: 0;
   cursor: pointer;
+  display: inline-flex;
 }
 
 /* Hover & Keyboard Focus Underline ONLY HERE NO WHERE ELSE for mobile*/
 .dropdown-title:hover {
-  text-decoration: underline;     /* Underlines as soon as mouse hovers */
+  color: var(--visited-color);    /* Underlines as soon as mouse hovers */
 }
 
-/* Default Arrow (Default: side arrow '<' or '›') */
+/* arrow */
 .dropdown-title::before {
-  content: "▸"; 
+  content: "＞";
+  display: inline-block;
   text-decoration: none;        /* Prevents underline from bleeding under the arrow */
+}
+
+/* 1. CLICK / TAP STATE (:focus-within handles click-away automatically) */
+.dropdown:focus-within .dropdown-title::before {
+  transform: rotate(90deg);
+}
+
+/*Show menu*/
+.dropdown:focus-within .dropdown-content {
+  display: block;
 }
 
 /* Hide dropdown menu by default */
@@ -233,17 +245,8 @@
 
 .dropdown-content a:hover {
   background-color: #F3F4F6;
-  text-decoration: underline;
 }
 
-/* 1. CLICK / TAP STATE (:focus-within handles click-away automatically) */
-.dropdown:focus-within .dropdown-title::before {
-  content: "▾";
-}
-
-.dropdown:focus-within .dropdown-content {
-  display: block;
-}
 
 
 /* ==========================================================================
@@ -471,4 +474,30 @@ main:has(.full-comic-reader) {
   padding: 0; 
 }
 
+/* 1. Hide default triangle */
+.comic-transcript summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.comic-transcript summary::-webkit-details-marker {
+  display: none; /* remove auto trianlge */
+}
+
+/*  Add custom arrow */
+.comic-transcript summary::before {
+  content: "＞";
+  display: inline-block;
+}
+
+/* 3. Spin on open */
+.comic-transcript[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.comic-transcript summary:hover {
+  color: var(--link-color);
+}
 </style>
