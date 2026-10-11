@@ -1,7 +1,13 @@
 {{ define "main" }}
 <div class="home-grid">
-    
-    <article class="box">
+    <article class="col">
+        <h2>{{ i18n "previous_event" }}</h2>
+    </article>
+
+    <!-- DIVIDER 1 -->
+    <div class="p-divider-y" role="separator"></div>
+
+    <article class="col">
         <h2>{{ i18n "upcoming_events" }}</h2>
         <ul>
             {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
@@ -33,16 +39,28 @@
         </ul>
     </article>
 
-    <article class="comic-preview box">
+    <!-- DIVIDER 1 -->
+    <div class="p-divider-y" role="separator"></div>
+
+    <article class="col">
         <h2>{{ i18n "latest_comic" }}</h2>
         {{ $latest := index (where .Site.RegularPages "Type" "comics").ByDate.Reverse 0 }}
         {{ with $latest }}
-            {{ partial "comic-viewer.html" . }}
+            <div class="comic-preview">
+                <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+                    {{ if .Resources.GetMatch "comic*" }}
+                        {{ $img := .Resources.GetMatch "comic*" }}
+                        <img src="{{ $img.RelPermalink }}" 
+                        alt="{{ .Title }}"
+                        title="{{.Params.alt}}"
+                        class="preview-comic-img" />
+                    {{ else }}
+                        {{/* Fallback if no specific image key is found */}}
+                        <p>{{ .Title }}</p>
+                    {{ end }}
+                </a>
+            </div>
         {{ end }}
-    </article>
-
-    <article class="box">
-        <h2>{{ i18n "previous_event" }}</h2>
     </article>
 </div>
 

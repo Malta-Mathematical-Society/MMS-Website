@@ -20,7 +20,7 @@
     --blockquote-color: #000000;
 
     --header-bg: #F6CA50;        /* Yellow header stripe */
-    --stripe-white: #FFFFFF;     /* White divider line */
+    --stripe-bg: #000000;     /* White divider line */
     --footer-bg: #971C13;        /* Red footer stripe */
   }
 
@@ -30,25 +30,94 @@
   }
 
   body {
-    zoom: 1.5;
+    zoom: 1.3;
     font-family: var(--font-secondary);
     font-size: var(--font-scale);
+    line-height: 1.6;        /* Gives mathematical prose plenty of breathing room */
+    color: #111116;          /* Deep ink black instead of harsh #000 */
+    -webkit-font-smoothing: antialiased; /* Renders vector font curves ultra-smooth */
     margin: 0;
-    padding: 1px;
     text-align: left;
     background-color: var(--background-color);
-    overflow-wrap: break-word;
+    /* ADDED: Global mid-word break prevention */
+    /* WHY ADDED: Forces full words to stay intact on line breaks across all columns and paragraphs. */
+    word-break: normal;
+    overflow-wrap: normal;
     line-height: 1.5;
     color: var(--text-color);
   }
 
   main {
-    max-width: 100%;
-    max-width: 930px;
-    margin: 1rem auto;
+    max-width: 1100px;
+    margin:0 auto;
     padding: 0 1.5rem;
     line-height: 1.4;
+    /*#frame*/
+    border-top: 2px solid var(--heading-color, #000000);
+    border-bottom: 2px solid var(--heading-color, #000000);
+    border-left: 2px solid var(--heading-color, #000000);
+    border-right: 2px solid var(--heading-color, #000000);
+    position: relative;
   }
+
+  main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%); /* Centers node over top-left corner */
+  z-index: 5;
+  box-shadow: 0 calc(100% + 3rem + 2px) 0 0 #FFFFFF;
+}
+
+main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translate(50%, -50%); /* Centers node over top-right corner */
+  z-index: 5;
+}
+
+/* 3. BOTTOM-LEFT CORNER NODE */
+main > *:last-child::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 5;
+}
+
+/* 4. BOTTOM-RIGHT CORNER NODE */
+main > *:last-child::after {
+  content: "";
+  position: absolute;
+  bottom: 0;; /* Matches main's bottom padding offset */
+  right: 0;  /* Matches main's right padding offset */
+  width: 25px;
+  height: 25px;
+  background-color: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translate(50%, 50%);
+  z-index: 5;
+}
 
   img {
     max-width: 100%;
@@ -59,11 +128,22 @@
 /* ==========================================================================
    2. TYPOGRAHY & BASE HTML ELEMENTS
    ========================================================================== */
-  h1,h2,h3,h4,h5,h6,p,ul,ol{
+  h1,h2,h3,h4,h5,h6,ul,ol{
     font-family: var(--font-main);
     color: var(--heading-color);
     margin-top: 0;
     margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-family: var(--font-secondary)
+  }
+
+  h1,h2 {
+  text-transform: uppercase;
+}
+  h1 {
+    margin: 1rem 0;
   }
 
   a {
@@ -124,8 +204,7 @@
     justify-content: space-between; /*the x-axis*/
     align-items: center; /*the y-axis center*/
     background-color: var(--header-bg);
-    border-bottom: 10px solid var(--stripe-white);
-    padding: 0.75rem 1.5rem;
+    padding: 10px 20px;
     gap: 1.5rem;
     width: 100%;
   }
@@ -233,7 +312,6 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   max-width:150px;
-  padding: 0.5rem 0;
 }
 
 /* Style links inside the dropdown menu */
@@ -345,11 +423,6 @@
     cursor: pointer;
   }
 
-  footer {
-    padding: 25px 0;
-    text-align: center;
-  }
-
 /* ==========================================================================
    6. MOBILE RESPONSIVE ADJUSTMENTS
    ========================================================================== */
@@ -377,42 +450,109 @@
   }
 }
 /* ==========================================================================
-   6. MAIN PAGE
+   6. MAIN PAGE 3-COL GRID
    ========================================================================== */
 .home-grid {
   display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  gap: 1rem;
   }
 
-.box {
-  background-color: #e5e7eb;
-  border: 0px #e5e7eb;
-  border-radius: 3px;
-  margin: 1rem 1rem;
+  /* Desktop Breakpoint (> 850px): 3 Columns with Hairline Track Dividers */
+@media (min-width: 900px) {
+  .home-grid {
+    /* 3Strictly equal 3-column */
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr) 1px minmax(0, 1fr);
+    gap: 0 1.5rem;
+    align-items: stretch;
+    gap: 0 1.5rem;
+  }
 }
 
-.box h2 {
-  padding: 10px 15px;
+/* Horizontal Divider */
+.p-divider-x {
+  border: none;
+  border-top: 2px solid #000000;
+  margin: 50px 50px;
+}
+
+/* Vertical Hairline - Mobile / Default Fallback */
+.p-divider-y {
+  background-color: #000000;
+  width: 100%;
+  height: 2px;
+  position: relative;
+}
+
+/* Base style for both end circles (Shared across desktop & mobile) */
+.p-divider-y::before,
+.p-divider-y::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Horizontal alignment of circles (for horizontal layout/mobile) */
+.p-divider-y::before {
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.p-divider-y::after {
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+/* Desktop Vertical Layout */
+@media (min-width: 900px) {
+  .home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr) 2px minmax(0, 1fr);
+    gap: 0 1.5rem;
+    align-items: stretch; /* Stretches the hairline to full height of columns */
+    padding: 0;
+  }
+
+  .p-divider-y {
+    width: 2px;
+    height: 100%; /* Stretches to parent height */
+    margin: 0;
+    align-self: stretch;
+  }
+
+  /* Vertical positioning of circles */
+  .p-divider-y::before {
+    top: 0;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  .p-divider-y::after {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 50%);
+  }
 }
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
-.comic-preview {
-  max-width: 480px;
-  /* Pushes the card to the RIGHT side of the page */
-  /* Format: margin: [top] [right] [bottom] [left] */
-  /* Setting left margin to 'auto' and right to '0' aligns it right */
-}
-
-/* Flexbox wrapper to center the comic image within the box */
-.comic-image-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  text-align: center;
-  scrollbar-width: thin; 
-}
 
 .comic-img {
-  max-width: 1000px;
+  max-width: 100%;
   width: 100%;
   min-width: 480px;
   height: auto;
@@ -430,6 +570,7 @@
 
 .comic-nav a,
 .comic-nav .disabled {
+  font-family: var(--font-secondary);
   background-color: #0072ce;
   /* Clean white button text */
   color: #ffffff;
@@ -437,9 +578,7 @@
   border: 0px solid #000000;
   /* Very tight padding gives xkcd's signature compact button dimensions */
   padding: 0.2rem 0.65rem;
-  /* Subtle corner rounding (xkcd uses 3px - 4px) */
   border-radius: 6px;
-  /* Font sizing and text alignment */
   font-size: 0.85rem;
   font-weight: bold;
   text-decoration: none;
@@ -463,7 +602,7 @@
 }
 
 .comic-transcript {
-  padding: 1rem 2rem;
+  padding: 0rem 2rem 1rem;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -517,4 +656,31 @@ pre,
 .comic-transcript summary:hover {
   color: var(--link-color);
 }
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+
+footer {
+  background: var(--footer-bg);
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+}
+
+footer p {
+  margin: 0;
+  color: #d4a2a5
+}
+
+footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  background-color: var(--heading-color, #000000);
+  color: #ffffff;
+}
+
 </style>
+
