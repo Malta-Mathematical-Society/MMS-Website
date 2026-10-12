@@ -345,35 +345,39 @@
 
 .lang-switch {
   display: inline-flex;
-  background-color: rgba(0, 0, 0, 0.12); /* Subtle pill background track */
-  padding: 4px;
-  border-radius: 20px;                   /* Rounded pill layout */
-  gap: 2px;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  padding-left: 0.5rem;
+  border-radius: 0;
 }
 
-
+/* Style the language links */
 .lang-switch a {
-  display: inline-block;
-  padding: 6px 14px;
-  font-size: 0.85rem;
+  display: inline;
+  padding: 0;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-color);
-  text-decoration: none;
-  border-radius: 16px;                   /* Matches outer container curves */
-  transition: all 0.2s ease-in-out;
+  color: var(--link-color);
 }
 
-/* Hover state for inactive options */
-.lang-switch a:hover:not(.active) {
-  background-color: rgba(255, 255, 255, 0.4);
+.lang-switch a:hover {
+  color: var(--visited-color);
 }
 
-/* Active Language Button (Inverted/Highlighted) */
+/* Active language formatting */
 .lang-switch a.active {
-  background-color: #FFFFFF;
-  color: #000000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Gives a raised button depth */
+  color: var(--heading-color);
 }
+
+/* Separate the language options cleanly with a slash */
+.lang-switch a + a::before {
+  content: "/";
+  margin-right: 5px;
+  color: var(--text-color);
+  font-weight: 700;
+}
+
 /* ==========================================================================
    5. PAGE-SPECIFIC COMPONENTS
    ========================================================================== */
