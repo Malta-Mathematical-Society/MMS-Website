@@ -30,7 +30,6 @@
   }
 
   body {
-    zoom: 1.3;
     font-family: var(--font-secondary);
     font-size: var(--font-scale);
     line-height: 1.6;        /* Gives mathematical prose plenty of breathing room */
@@ -39,26 +38,13 @@
     text-align: left;
     margin: 0;
     background-color: var(--background-color);
-    /* ADDED: Global mid-word break prevention */
-    /* WHY ADDED: Forces full words to stay intact on line breaks across all columns and paragraphs. */
-    word-break: normal;
-    overflow-wrap: normal;
-    line-height: 1.5;
-    color: var(--text-color);
   }
 
   main {
-    max-width: 1100px;
-    margin:0 auto;
     padding: 0 1.5rem;
     margin: auto;
     max-width: 650px;
-    line-height: 1.4;
-    /*#frame*/
-    border-top: 2px solid var(--heading-color, #000000);
-    border-bottom: 2px solid var(--heading-color, #000000);
-    border-left: 2px solid var(--heading-color, #000000);
-    border-right: 2px solid var(--heading-color, #000000);
+    border: 2px solid var(--heading-color, #000000);
     position: relative;
   }
 
@@ -228,7 +214,8 @@
   /* Row 2: Takes up the entire width on its own line below */
   .site-nav {
     justify-content: space-between; /* Distributes links evenly across the line */
-    width: 100%;
+    position: relative;
+    display: inline-block;
   }
 }
 
@@ -265,11 +252,21 @@
 }
 
 /* Dropdown Container */
-.dropdown {
-  position: relative;
-  display: inline-block;
+/* Keep the site-nav aligned horizontally */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
+/* Treat the dropdown container as part of the inline text flow */
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Style the archive button to look like any other text link */
 .dropdown-title {
   background: none;
   border: none;
@@ -279,59 +276,69 @@
   padding: 0;
   cursor: pointer;
   display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-/* Hover & Keyboard Focus Underline ONLY HERE NO WHERE ELSE for mobile*/
 .dropdown-title:hover {
-  color: var(--visited-color);    /* Underlines as soon as mouse hovers */
+  color: var(--visited-color);
 }
 
-/* arrow */
+/* 1 & 2. Arrow on the LEFT, using the long character ＞ */
 .dropdown-title::before {
   content: "＞";
   display: inline-block;
-  text-decoration: none;        /* Prevents underline from bleeding under the arrow */
+  font-weight: normal;
 }
 
-/* 1. CLICK / TAP STATE (:focus-within handles click-away automatically) */
-.dropdown:focus-within .dropdown-title::before {
-  transform: rotate(90deg);
+/* Clear any accidental pseudo-elements on the right */
+.dropdown-title::after {
+  content: none;
+  display: none; /* Hidden by default */
 }
 
-/*Show menu*/
-.dropdown:focus-within .dropdown-content {
-  display: block;
+/* When the dropdown is open, make the colon appear right after "Archive" */
+.dropdown:focus-within .dropdown-title::after {
+  content: ":";
+  display: inline;
 }
 
-/* Hide dropdown menu by default */
+/* 3. The 3 categories are hidden by default */
 .dropdown-content {
   display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  max-width:150px;
 }
 
-/* Style links inside the dropdown menu */
+/* 4. When focused/clicked, append them directly to the RIGHT as text items */
+.dropdown:focus-within .dropdown-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between the appended category links */
+  margin-left: 0.75rem; /* Space between "Archive" and the first category */
+}
+
+/* Style the appended items to look like clean, unboxed text links */
 .dropdown-content a {
-  color: #222222 !important; /* Force dark text on white menu background */
-  display: block;
-  padding: 0.5rem 1rem;
+  color: var(--link-color) !important;
+  font-weight: 700;
   text-decoration: none;
-  white-space: nowrap;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .dropdown-content a:hover {
-  background-color: #F3F4F6;
+  color: var(--visited-color) !important;
+  text-decoration: underline;
 }
 
-
-
+/* Optional separator slash/bullet between the appended items if you want them distinct */
+.dropdown-content a + a::before {
+  content: "/";
+  margin-right: 0.75rem;
+  color: var(--text-color);
+  font-weight: normal;
+}
 /* ==========================================================================
    4. LANGUAGE SWITCHER TOGGLE
    ========================================================================== */
@@ -452,7 +459,7 @@
   }
 }
 /* ==========================================================================
-   6. MAIN PAGE 3-COL GRID (STACKED VERSION)
+   6. MAIN PAGE
    ========================================================================== */
 
   .home-grid {
@@ -512,14 +519,6 @@
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
-
-.comic-img {
-  max-width: 100%;
-  width: 100%;
-  min-width: 480px;
-  height: auto;
-  display: block;
-}
 
 .comic-nav {
   display: flex;
@@ -610,6 +609,7 @@ pre,
   display: inline-block;
 }
 
+
 /* 3. Spin on open */
 .comic-transcript[open] summary::before {
   transform: rotate(90deg);
@@ -619,22 +619,15 @@ pre,
   color: var(--link-color);
 }
 /* ==========================================================================
-   8. FOOTER
+   8. EVENT
    ========================================================================== */
 
 /* Side-by-side grid container */
 .event-page-container {
   display: grid;
-  grid-template-columns: 1fr, 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
-}
-
-/* Make sure your poster fills the left column cleanly */
-.thumbnail-img {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* Stack nicely on mobile screens */
