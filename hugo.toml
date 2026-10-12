@@ -12,7 +12,10 @@ defaultContentLanguageInSubDir = true
   #decide on icon file here to be used in baseof.html
   browserIcon = "logo-only-color-borderless.png" #used in badeof.html
   homeIcon = "logo-primary-color-light-background-borderless.svg" #used in header.html
-  address = "Maths & Physics Building, University of Malta, Msida, Malta"
+  address = '''Maths & Physics Building
+  University of Malta
+  Msida
+  Malta'''
 
 
 #for bilingualism rather than coding two websites we will use the inbuilt transaltion i18n folder,

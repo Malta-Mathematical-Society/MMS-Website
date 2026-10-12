@@ -1,46 +1,55 @@
 {{ define "main" }}
+<div class="event-page-container">
+    <div class="left-post">
+        {{ $img := .Resources.GetMatch "Poster" }}
+            {{ if $img }}
+              <img src="{{ $img.RelPermalink }}" 
+              alt="{{ .Title }}"
+              title="{{ .Title }}"
+              class="thumbnail-img">
+            {{ end }}
+    </div>
+    <div class="right-post">
+        {{/* Define variables */}}
+        {{- $isDateConfirmed := .Params.isDateConfirmed -}}
+        {{- $isLocationConfirmed := .Params.isLocationConfirmed }}
 
-    {{/* Define variables */}}
-    {{- $isDateConfirmed := .Params.isDateConfirmed -}}
-    {{- $isLocationConfirmed := .Params.isLocationConfirmed }}
+        <h1>{{ .Title }}</h1>
 
-    <h1>{{ .Title }}</h1>
+        {{/* Print date and time if they are confirmed, otherwise print TBA.
+        Print the end date only if it differs from the start date */}}
+        <b>Date & Time: </b>
+        {{- if $isDateConfirmed -}}
+            {{- $start := time.AsTime .Params.startDate -}}
+            {{- $end := time.AsTime .Params.endDate -}}
 
-    {{/* Print date and time if they are confirmed, otherwise print TBA.
-    Print the end date only if it differs from the start date */}}
-    <b>Date & Time: </b>
-    {{- if $isDateConfirmed -}}
-        {{- $start := time.AsTime .Params.startDate -}}
-        {{- $end := time.AsTime .Params.endDate -}}
-
-        {{ $start | time.Format ":date_long" }} {{ $start | time.Format ":time_short" }}
-        -
-        {{ if eq ($start.Format "2006-01-02") ($end.Format "2006-01-02") }}
-            {{ $end | time.Format ":time_short" }}
+            {{ $start | time.Format ":date_long" }} {{ $start | time.Format ":time_short" }}
+            -
+            {{ if eq ($start.Format "2006-01-02") ($end.Format "2006-01-02") }}
+                {{ $end | time.Format ":time_short" }}
+            {{- else -}}
+                {{ $end | time.Format ":date_long" }} {{ $end | time.Format ":time_short" }}
+            {{- end -}}
         {{- else -}}
-            {{ $end | time.Format ":date_long" }} {{ $end | time.Format ":time_short" }}
+            TBA
         {{- end -}}
-    {{- else -}}
-        TBA
-    {{- end -}}
 
-    <br>
-
-    {{/* Print the location if it is confirmed, otherwise print TBA.
-    If a location pin is present, embed it as a hyperlink */}}
-    <b>Location: </b>
-    {{- if $isLocationConfirmed -}}
-        {{- if .Params.locationPin -}}
-            <a href="{{ .Params.locationPin }}">{{ .Params.location }}</a>
+        {{/* Print the location if it is confirmed, otherwise print TBA.
+        If a location pin is present, embed it as a hyperlink */}}
+        <b>Location: </b>
+        {{- if $isLocationConfirmed -}}
+            {{- if .Params.locationPin -}}
+                <a href="{{ .Params.locationPin }}">{{ .Params.location }}</a>
+            {{- else -}}
+                {{ .Params.location }}
+            {{- end -}}
         {{- else -}}
-            {{ .Params.location }}
+            TBA
         {{- end -}}
-    {{- else -}}
-        TBA
-    {{- end -}}
 
-    {{/* Print the event description */}}
-    {{- .Content -}}
-
+        {{/* Print the event description */}}
+        {{- .Content -}}
+    </div>
+</div>
     {{/* TODO figure out images */}}
 {{ end }}

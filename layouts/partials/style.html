@@ -21,7 +21,7 @@
 
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
-    --footer-bg: #971C13;        /* Red footer stripe */
+    --footer-bg: #0471cc;        /* Red footer stripe */
   }
 
   /* Global Box Sizing Reset */
@@ -36,8 +36,8 @@
     line-height: 1.6;        /* Gives mathematical prose plenty of breathing room */
     color: #111116;          /* Deep ink black instead of harsh #000 */
     -webkit-font-smoothing: antialiased; /* Renders vector font curves ultra-smooth */
-    margin: 0;
     text-align: left;
+    margin: 0;
     background-color: var(--background-color);
     /* ADDED: Global mid-word break prevention */
     /* WHY ADDED: Forces full words to stay intact on line breaks across all columns and paragraphs. */
@@ -51,6 +51,8 @@
     max-width: 1100px;
     margin:0 auto;
     padding: 0 1.5rem;
+    margin: auto;
+    max-width: 650px;
     line-height: 1.4;
     /*#frame*/
     border-top: 2px solid var(--heading-color, #000000);
@@ -60,64 +62,64 @@
     position: relative;
   }
 
-  main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #FFFFFF;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  transform: translate(-50%, -50%); /* Centers node over top-left corner */
-  z-index: 5;
-  box-shadow: 0 calc(100% + 3rem + 2px) 0 0 #FFFFFF;
-}
+    main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Centers node over top-left corner */
+    z-index: 5;
+    box-shadow: 0 calc(100% + 3rem + 2px) 0 0 #FFFFFF;
+  }
 
-main::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #FFFFFF;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  transform: translate(50%, -50%); /* Centers node over top-right corner */
-  z-index: 5;
-}
+  main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    transform: translate(50%, -50%); /* Centers node over top-right corner */
+    z-index: 5;
+  }
 
 /* 3. BOTTOM-LEFT CORNER NODE */
-main > *:last-child::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #FFFFFF;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  transform: translate(-50%, 50%);
-  z-index: 5;
-}
+  main > *:last-child::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 5;
+  }
 
 /* 4. BOTTOM-RIGHT CORNER NODE */
-main > *:last-child::after {
-  content: "";
-  position: absolute;
-  bottom: 0;; /* Matches main's bottom padding offset */
-  right: 0;  /* Matches main's right padding offset */
-  width: 25px;
-  height: 25px;
-  background-color: #FFFFFF;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  transform: translate(50%, 50%);
-  z-index: 5;
-}
+  main > *:last-child::after {
+    content: "";
+    position: absolute;
+    bottom: 0;; /* Matches main's bottom padding offset */
+    right: 0;  /* Matches main's right padding offset */
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    transform: translate(50%, 50%);
+    z-index: 5;
+  }
 
   img {
     max-width: 100%;
@@ -131,7 +133,7 @@ main > *:last-child::after {
   h1,h2,h3,h4,h5,h6,ul,ol{
     font-family: var(--font-main);
     color: var(--heading-color);
-    margin-top: 0;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
@@ -207,6 +209,7 @@ main > *:last-child::after {
     padding: 10px 20px;
     gap: 1.5rem;
     width: 100%;
+    margin: auto;
   }
 
 @media (max-width: 700px) {     /* Set this to the exact width where items get close */
@@ -419,7 +422,6 @@ main > *:last-child::after {
     display: flex;        /* Takes up the full width, forcing a new line */
     align-items: center;  /* Vertically aligns the checkbox square with the text */
     gap: 0.5rem;          /* Adds space between the checkbox box and label text */
-    margin-bottom: 0.5rem;/* Creates breathing room between rows */
     cursor: pointer;
   }
 
@@ -450,103 +452,63 @@ main > *:last-child::after {
   }
 }
 /* ==========================================================================
-   6. MAIN PAGE 3-COL GRID
+   6. MAIN PAGE 3-COL GRID (STACKED VERSION)
    ========================================================================== */
-.home-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 0;
-  gap: 1rem;
-  }
 
-  /* Desktop Breakpoint (> 850px): 3 Columns with Hairline Track Dividers */
-@media (min-width: 900px) {
-  .home-grid {
-    /* 3Strictly equal 3-column */
-    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr) 1px minmax(0, 1fr);
-    gap: 0 1.5rem;
-    align-items: stretch;
-    gap: 0 1.5rem;
-  }
-}
-
-/* Horizontal Divider */
-.p-divider-x {
-  border: none;
-  border-top: 2px solid #000000;
-  margin: 50px 50px;
-}
-
-/* Vertical Hairline - Mobile / Default Fallback */
-.p-divider-y {
-  background-color: #000000;
-  width: 100%;
-  height: 2px;
-  position: relative;
-}
-
-/* Base style for both end circles (Shared across desktop & mobile) */
-.p-divider-y::before,
-.p-divider-y::after {
-  content: "";
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  z-index: 2;
-}
-
-/* Horizontal alignment of circles (for horizontal layout/mobile) */
-.p-divider-y::before {
-  left: 0;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.p-divider-y::after {
-  right: 0;
-  top: 50%;
-  transform: translate(50%, -50%);
-}
-
-/* Desktop Vertical Layout */
-@media (min-width: 900px) {
   .home-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr) 2px minmax(0, 1fr);
-    gap: 0 1.5rem;
-    align-items: stretch; /* Stretches the hairline to full height of columns */
-    padding: 0;
+    grid-template-columns: 1fr;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
   }
 
-  .p-divider-y {
+  .home-grid h2 {
+    padding-left: 0.5rem;
+  }
+
+  /* Horizontal Divider (if used elsewhere) */
+  .p-divider-x {
+    background-color: #000000;
     width: 2px;
-    height: 100%; /* Stretches to parent height */
-    margin: 0;
-    align-self: stretch;
+    height: 100%;
+    position: relative;
   }
 
-  /* Vertical positioning of circles */
+  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
+  .p-divider-y {
+    background-color: #000000;
+    width: 100%;
+    height: 2px;
+    position: relative;
+  }
+
+  /* Base style for both end circles */
+  .p-divider-y::before,
+  .p-divider-y::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  /* Horizontal alignment of circles for the stacked layout */
   .p-divider-y::before {
-    top: 0;
-    left: 50%;
-    right: auto;
+    left: 0;
+    top: 50%;
     transform: translate(-50%, -50%);
   }
 
   .p-divider-y::after {
-    top: auto;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, 50%);
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
   }
-}
+
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
@@ -660,6 +622,32 @@ pre,
    8. FOOTER
    ========================================================================== */
 
+/* Side-by-side grid container */
+.event-page-container {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Make sure your poster fills the left column cleanly */
+.thumbnail-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Stack nicely on mobile screens */
+@media (max-width: 768px) {
+  .event-page-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+
 footer {
   background: var(--footer-bg);
   text-align: center;
@@ -669,7 +657,7 @@ footer {
 
 footer p {
   margin: 0;
-  color: #d4a2a5
+  color: #000000;
 }
 
 footer a {
@@ -678,7 +666,6 @@ footer a {
 }
 
 footer a:hover {
-  background-color: var(--heading-color, #000000);
   color: #ffffff;
 }
 
