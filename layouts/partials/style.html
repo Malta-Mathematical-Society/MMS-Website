@@ -9,7 +9,7 @@
     --width: 100%;
     --font-main: 'Lato', sans-serif;
     --font-secondary: 'Lato', sans-serif;
-    --font-scale: 1em;
+    --font-scale: 1.25rem;
 
     /*MMS brand colors*/
     --background-color: #7aaafa;
@@ -22,6 +22,7 @@
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
     --footer-bg: #0471cc;        /* Red footer stripe */
+    --node-diameter: 30px;
   }
 
   /* Global Box Sizing Reset */
@@ -53,14 +54,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 25px;
-    height: 25px;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
     background-color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 50%;
     transform: translate(-50%, -50%); /* Centers node over top-left corner */
     z-index: 5;
-    box-shadow: 0 calc(100% + 3rem + 2px) 0 0 #FFFFFF;
   }
 
   main::after {
@@ -68,8 +68,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 25px;
-    height: 25px;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
     background-color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 50%;
@@ -83,8 +83,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 25px;
-    height: 25px;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
     background-color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 50%;
@@ -98,8 +98,8 @@
     position: absolute;
     bottom: 0;; /* Matches main's bottom padding offset */
     right: 0;  /* Matches main's right padding offset */
-    width: 25px;
-    height: 25px;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
     background-color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 50%;
@@ -227,9 +227,10 @@
 }
 
 .site-logo {
-  height: 42px;
+  height: 64px;
   width: auto;
   display: block;
+  margin: 0 0.5rem;
 }
 
 .site-nav{
@@ -318,18 +319,13 @@
 
 /* Style the appended items to look like clean, unboxed text links */
 .dropdown-content a {
-  color: var(--link-color) !important;
+  color: var(--link-color);
   font-weight: 700;
   text-decoration: none;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
 }
 
 .dropdown-content a:hover {
-  color: var(--visited-color) !important;
-  text-decoration: underline;
+  color: var(--visited-color);
 }
 
 /* Optional separator slash/bullet between the appended items if you want them distinct */
@@ -356,7 +352,6 @@
 .lang-switch a {
   display: inline;
   padding: 0;
-  font-size: 1rem;
   font-weight: 700;
   color: var(--link-color);
 }
@@ -465,7 +460,6 @@
 /* ==========================================================================
    6. MAIN PAGE
    ========================================================================== */
-
   .home-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -494,18 +488,60 @@
     position: relative;
   }
 
+ .home-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: calc(100% + 3rem);
+  }
+
+  .home-grid h2 {
+    padding-left: 0.5rem;
+  }
+
+  /* Horizontal Divider (if used elsewhere) */
+  .p-divider-x {
+    background-color: #000000;
+    width: 2px;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
+  .p-divider-y {
+    background-color: #000000;
+    width: 100%;
+    height: 2px;
+    position: relative;
+  }
+
   /* Base style for both end circles */
   .p-divider-y::before,
   .p-divider-y::after {
     content: "";
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
     background-color: #ffffff;
     border: 2px solid #000000;
     border-radius: 50%;
+    margin-left:-1px;
+    margin-right:-1px;
     z-index: 2;
   }
+
+  /* Horizontal alignment of circles for the stacked layout */
+  .p-divider-y::before {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .p-divider-y::after {
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
 
   /* Horizontal alignment of circles for the stacked layout */
   .p-divider-y::before {
@@ -648,8 +684,8 @@ pre,
 footer {
   background: var(--footer-bg);
   text-align: center;
-  font-size: 0.85rem;
-  padding: 10px 20px;
+  font-size: 1rem;
+  padding: 10px;
 }
 
 footer p {
