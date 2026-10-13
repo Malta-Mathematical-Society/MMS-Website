@@ -34,6 +34,15 @@ defaultContentLanguageInSubDir = true
     label = 'Malti'
     weight = 2
 
+# Tells Hugo to inherit missing content pages directly from the default language!
+contentDir = "content"
+[module]
+  [module.hugoVersion]
+    extended = true
+
+# Enables global fallback for content rendering
+[deployment]
+
 [languages.mt.permalinks.section] #each arcive ovewiew will have translated URL
   comics = '/il-komiks/'
   events = '/attivitajiet/'

@@ -45,17 +45,22 @@
 
     <article class="col">
         <h2>{{ i18n "previous_event" }}</h2>
-        {{ $writeups := where (where .Site.RegularPages "Section" "events") "Params.eventposttype" "writeup" }}
+        {{/* 1. Fetch writeups from the primary (EN) site */}}
+        {{ $enSite := index .Sites 0 }}
+        {{ $writeups := where (where $enSite.RegularPages "Section" "events") "Params.eventposttype" "writeup" }}
         {{ $latestWriteup := index $writeups.ByDate.Reverse 0 }}
+        
         {{ with $latestWriteup }}
+            {{/* 2. Get current language translation, or default back to EN */}}
+            {{ $target := index (where .AllTranslations "Lang" $.Lang) 0 | default . }}
             <div class="previous-event-preview">
                 <h3>
-                    <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
+                    <a href="{{ $target.RelPermalink }}" class="event-title">{{ $target.Title }}</a>
                 </h3>
-                {{ with .Resources.Get .Params.mainImage }}
+                {{ with $target.Resources.Get $target.Params.mainImage }}
                     <p>
-                        <a href="{{ $.RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="preview-comic-img" />
+                        <a href="{{ $target.RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" alt="{{ $target.Title }}" class="preview-comic-img" />
                         </a>
                     </p>
                 {{ end }}
@@ -68,19 +73,25 @@
 
     <article class="col">
         <h2>{{ i18n "latest_comic" }}</h2>
-        {{ $latest := index (where .Site.RegularPages "Type" "comics").ByDate.Reverse 0 }}
+        {{/* 1. Fetch comics from the primary (EN) site */}}
+        {{ $enSite := index .Sites 0 }}
+        {{ $comics := where $enSite.RegularPages "Type" "comics" }}
+        {{ $latest := index $comics.ByDate.Reverse 0 }}
+
         {{ with $latest }}
+            {{/* 2. Get current language translation, or default back to EN */}}
+            {{ $target := index (where .AllTranslations "Lang" $.Lang) 0 | default . }}
             <div class="comic-preview">
-                <a href="{{ .RelPermalink }}" title="{{ .Title }}">
-                    {{ if .Resources.GetMatch "comic*" }}
-                        {{ $img := .Resources.GetMatch "comic*" }}
+                <a href="{{ $target.RelPermalink }}" title="{{ $target.Title }}">
+                    {{ if $target.Resources.GetMatch "comic*" }}
+                        {{ $img := $target.Resources.GetMatch "comic*" }}
                         <img src="{{ $img.RelPermalink }}" 
-                        alt="{{ .Title }}"
-                        title="{{.Params.alt}}"
+                        alt="{{ $target.Title }}"
+                        title="{{ $target.Params.alt }}"
                         class="preview-comic-img" />
                     {{ else }}
                         {{/* Fallback if no specific image key is found */}}
-                        <p>{{ .Title }}</p>
+                        <p>{{ $target.Title }}</p>
                     {{ end }}
                 </a>
             </div>
