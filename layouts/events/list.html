@@ -3,7 +3,7 @@
     <h1>{{ .Title }}</h1>
 
     <ul>
-        {{ range sort .Pages "Params.startdate" "asc" }}
+        {{ range sort .Pages "Date" "desc" }}
             {{ if and .Params.isDateConfirmed .Params.enddate }}
                 {{ if (time.AsTime .Params.enddate).Before now }}
                     <li>

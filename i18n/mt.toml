@@ -16,7 +16,7 @@ other = "Arkivju"
 other = "Komiks"
 
 [nav_events]
-other = "Attivitajiet li Diġà Seħħew"
+other = "Attivitajiet Passati"
 
 [nav_newsletters]
 other = "Bullettini"
@@ -63,4 +63,4 @@ other = "Ara fuq is-sit >"
 other = "Neħħi l-abbonament"
 
 [latest_comic]
-other = "[translation needed]"
+other = "L-aħħar komik"

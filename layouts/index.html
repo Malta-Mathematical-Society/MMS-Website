@@ -1,13 +1,6 @@
 {{ define "main" }}
 <div class="home-grid">
     <article class="col">
-        <h2>{{ i18n "previous_event" }}</h2>
-    </article>
-
-    <!-- DIVIDER 1 -->
-    <div class="p-divider-y" role="separator"></div>
-
-    <article class="col">
         <h2>{{ i18n "upcoming_events" }}</h2>
         <ul>
             {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
@@ -29,14 +22,29 @@
                 {{ end }}
 
                 {{ if $show }}
-                    <li>
-                        <a href="{{ .RelPermalink }}">
-                            {{ if .Params.startdate }}{{ (time.AsTime .Params.startdate).Format "02 Jan, 2006" }} - {{ end }}{{ .Title }}
-                        </a>
-                    </li>
+                    <h3>
+                        {{/* 1. Date (plain text, unlinked) */}}
+                        {{ if .Params.startdate }}
+                            <span class="event-date">{{ (time.AsTime .Params.startdate).Format "02 Jan" }}</span>: 
+                        {{ end }}
+
+                        {{/* 2. Title (hyperlinked) */}}
+                        <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
+                    </h3>
+                    {{/* Match the mainImage parameter from TOML */}}
+                    {{ with .Resources.Get .Params.mainImage }}
+                        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="preview-comic-img" />
+                    {{ end }}
                 {{ end }}
             {{ end }}
         </ul>
+    </article>
+
+    <!-- DIVIDER 1 -->
+    <div class="p-divider-y" role="separator"></div>
+
+        <article class="col">
+        <h2>{{ i18n "previous_event" }}</h2>
     </article>
 
     <!-- DIVIDER 1 -->

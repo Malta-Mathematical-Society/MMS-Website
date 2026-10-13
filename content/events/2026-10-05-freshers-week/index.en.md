@@ -6,6 +6,7 @@ isDateConfirmed = true
 location = "Science Lecture Theatre, University of Malta"
 isLocationConfirmed = true
 locationPin = "https://maps.app.goo.gl/ttc3rwi69EeyKgDR7"
+thumbnailImage = "poster.jpeg"
 +++
 
 Come visit our stand at the KSU Freshers' Week 2026! Stop by to play some games, meet fellow maths students, and maybe purchase a membership!

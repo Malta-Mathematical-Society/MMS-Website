@@ -6,19 +6,16 @@
   @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
   
   :root {
-    --width: 100%;
-    --font-main: 'Lato', sans-serif;
-    --font-secondary: 'Lato', sans-serif;
+    --width: 720px;
+    --font-main: 'Lato', Verdana, sans-serif;
+    --font-secondary: 'Lato', Verdana, sans-serif;
     --font-scale: 1.25rem;
-
-    /*MMS brand colors*/
     --background-color: #7aaafa;
     --heading-color: #000000;
     --text-color: #000000;
     --link-color: #971C13;
     --visited-color: #1a1397;
     --blockquote-color: #000000;
-
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
     --footer-bg: #0471cc;        /* Red footer stripe */
@@ -39,12 +36,13 @@
     text-align: left;
     margin: 0;
     background-color: var(--background-color);
+
   }
 
   main {
-    padding: 0 1.5rem;
+    max-width: var(--width);
+    padding: 0 1.5rem 1.5rem 1.5rem;
     margin: auto;
-    max-width: 650px;
     border: 2px solid #000000;
     position: relative;
   }
@@ -119,20 +117,15 @@
   h1,h2,h3,h4,h5,h6,ul,ol{
     font-family: var(--font-main);
     color: var(--heading-color);
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
   }
 
-  p {
-    font-family: var(--font-secondary)
+  ul {
+    list-style-type: ">";
   }
 
   h1,h2 {
   text-transform: uppercase;
 }
-  h1 {
-    margin: 1rem 0;
-  }
 
   a {
     color: var(--link-color);
@@ -159,6 +152,8 @@
     font-style: normal;
     font-size: 15px;
   }
+
+
 
   table {
     width: 100%;
@@ -432,48 +427,77 @@
     cursor: pointer;
   }
 
+  /* Container created by row shortcode */
+  .img-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 1.5em 0;
+  }
+
+  /* Ensure paragraph tags inside the row don't break flex layout */
+  .img-row p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Force exactly 2 images per line */
+  .img-row img,
+  .img-row p img {
+    width: calc(50% - 6px); /* 50% minus half of the 12px gap */
+    height: auto;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .img-row img:only-child,   /* If there is only 1 image inside the row, let it take full width */
+  .img-row p img:only-child {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {  /* Mobile responsiveness: stack vertically on narrow screens */
+    .img-row img,
+    .img-row p img {
+      width: 100%;
+    }
+  }
 /* ==========================================================================
    6. MOBILE RESPONSIVE ADJUSTMENTS
    ========================================================================== */
-@media (max-width: 600px) {
-  .header-stripe {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-  }
+  @media (max-width: 600px) {
+    .header-stripe {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
 
-  .site-nav {
-    margin-left: 0;               /* Resets right-align so it stacks naturally */
-  }
+    .site-nav {
+      margin-left: 0;               /* Resets right-align so it stacks naturally */
+    }
 
-  ul.blog-posts li {
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
+    ul.blog-posts li {
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
 
-  ul.blog-posts li span {
-    flex: none;
-    font-size: 0.85em;
-    opacity: 0.85;
+    ul.blog-posts li span {
+      flex: none;
+      font-size: 0.85em;
+      opacity: 0.85;
+    }
   }
-}
 /* ==========================================================================
-   6. MAIN PAGE
+   6. HOME PAGE
    ========================================================================== */
-  .home-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    width: calc(100% + 3rem);
-  }
-
-  .home-grid h2 {
-    padding-left: 0.5rem;
-  }
-
   /* Horizontal Divider (if used elsewhere) */
+  .home-grid ul {
+  padding:0
+  }
+
   .p-divider-x {
     background-color: #000000;
     width: 2px;
@@ -487,16 +511,6 @@
     width: 100%;
     height: 2px;
     position: relative;
-  }
-
- .home-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: calc(100% + 3rem);
-  }
-
-  .home-grid h2 {
-    padding-left: 0.5rem;
   }
 
   /* Horizontal Divider (if used elsewhere) */
@@ -560,65 +574,43 @@
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
-
 .comic-nav {
   display: flex;
   justify-content: center;
-  gap: 0.5rem; /* Space between buttons side-by-side */
-  font-variant: small-caps;  /* EDIT THESE VALUES to control space above and below nav bars: */
-  margin-top: 1rem;    /* <-- Space ABOVE the nav bar */
-  margin-bottom: 1rem; /* <-- Space BELOW the nav bar */
-}
-
-.comic-nav a,
-.comic-nav .disabled {
+  align-items: center;
+  gap: 1.5rem; /* Spacious text-based separation */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-family: var(--font-secondary);
-  background-color: #0072ce;
-  /* Clean white button text */
-  color: #ffffff;
-  /* Subtle border outline for button structure */
-  border: 0px solid #000000;
-  /* Very tight padding gives xkcd's signature compact button dimensions */
-  padding: 0.2rem 0.65rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  font-weight: 700;
+}
+
+/* Treat navigation items like normal text links */
+.comic-nav a {
+  color: var(--visited-color);
   text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  line-height: 1.2;
-  white-space: nowrap; /*no squish*/
-  flex-shrink: 0;/*no squish*/
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
-/* press button */
-.comic-nav a:active {
-  filter: brightness(0.8);
+.comic-nav a:hover {
+  color: var(--link-color);
 }
 
-/* 4. Disabled button state (First/Prev on page 1, Next/Latest on latest page) */
+/* Disabled state (e.g., on the first or last page of the comic) */
 .comic-nav .disabled {
-  /* Fades out disabled buttons while preserving button box shape */
-  opacity: 0.33;
+  color: var(--text-color);
+  opacity: 0.3;
   pointer-events: none;
+  text-decoration: none;
 }
 
 .comic-transcript {
   padding: 0rem 2rem 1rem;
   max-width: 100%;
   box-sizing: border-box;
-}
-
-.full-comic-reader{
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* If the main tag contains the comic reader, override the 3rem margin and center it */
-main:has(.full-comic-reader) {
-  margin: 0 auto;
-  padding: 0; 
 }
 
 /* 1. Hide default triangle */
@@ -659,25 +651,7 @@ pre,
 .comic-transcript summary:hover {
   color: var(--link-color);
 }
-/* ==========================================================================
-   8. EVENT
-   ========================================================================== */
 
-/* Side-by-side grid container */
-.event-page-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-/* Stack nicely on mobile screens */
-@media (max-width: 768px) {
-  .event-page-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
 /* ==========================================================================
    8. FOOTER
    ========================================================================== */

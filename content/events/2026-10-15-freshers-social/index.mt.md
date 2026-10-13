@@ -6,8 +6,10 @@ isDateConfirmed = true
 location = "Għollieqa Shed, Campus Hub"
 locationPin = "https://maps.app.goo.gl/4tTdKasfRF8wBodz7"
 isLocationConfirmed = true
+mainImage = "poster.jpeg"
+
 +++
 
 Ejja ltaqa' ma' studenti oħra tal-matematika filgħaxija, f'ambjent rilassat bil-pizza, xorb u logħob! Irreġistra [hawn](https://docs.google.com/forms/d/1UfS0PkxE0RSu7xQy9Gr1An_Uq99-wDwcniYcT1xaEW4).
 
-![Poster](Poster.jpeg)
+![poster](poster.jpeg)

@@ -1,5 +1,5 @@
 +++
-title = 'Attivitajiet li Diġà Seħħew'
+title = 'Attivitajiet'
 +++
 
 Istra kemm hu events officer tajjeb Louie

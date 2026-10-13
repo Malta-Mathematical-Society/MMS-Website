@@ -1,5 +1,5 @@
 +++
-title = 'Past Events'
+title = 'Events'
 +++
 
 Wow what a great events officer Louie is
