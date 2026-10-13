@@ -1,6 +1,5 @@
 {{ define "main" }}
 <content>
-  <!--temporary display the writing in index.md-->
   <h1>{{ .Title }}</h1>
 
   {{ if .Content }}
@@ -9,23 +8,52 @@
     </div>
   {{ end }}
 
-
   <ul class="blog-posts">
-    {{ range .Pages }}
-    <li>
-      <span>
-        <i>
-          <time datetime='{{ .Date.Format "2006-01-02" }}'> <!--a formatting template-->
-            {{ .Date.Format (default "Jan 2006" .Site.Params.dateFormat) }}
-          </time>
-        </i>
-      </span>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </li>
+    {{/* 1. Gather all pages across ALL language sites for this section */}}
+    {{ $allLangPages := slice }}
+    {{ range .Sites }}
+      {{ $sectionPages := (.GetPage $.Section).Pages }}
+      {{ $allLangPages = $allLangPages | union $sectionPages }}
+    {{ end }}
+
+    {{/* 2. Group pages by their translation relationship so duplicates are merged */}}
+    {{ $uniquePosts := slice }}
+    {{ range $allLangPages }}
+      {{/* Use TranslationKey (or File path) to identify unique logical posts */}}
+      {{ $key := .TranslationKey }}
+      {{ $uniquePosts = $uniquePosts | union (slice .) }}
+    {{ end }}
+
+    {{/* 3. Loop over unique posts and pick the best available version */}}
+    {{ range $allLangPages.ByDate.Reverse }}
+      {{/* Check if current language version exists */}}
+      {{ $currentLangPage := index (where .AllTranslations "Lang" $.Lang) 0 }}
+      
+      {{/* Pick current language page if available, otherwise use this page as fallback */}}
+      {{ $displayPage := $currentLangPage | default . }}
+      {{ $isFallback := not $currentLangPage }}
+
+      {{/* Render only once per logical translation group */}}
+      {{ if or (eq .Lang $.Lang) (and $isFallback (eq .Lang .FirstSection.Lang)) }}
+        <li>
+          <span>
+            <i>
+              <time datetime='{{ $displayPage.Date.Format "2006-01-02" }}'>
+                {{ $displayPage.Date.Format (default "Jan 2006" $.Site.Params.dateFormat) }}
+              </time>
+            </i>
+          </span>
+
+          <a href="{{ $displayPage.Permalink }}">
+            {{ $displayPage.Title }}
+            {{ if $isFallback }}
+              <small>({{ upper .Lang }})</small>
+            {{ end }}
+          </a>
+        </li>
+      {{ end }}
     {{ else }}
-    <li>
-      No posts yet
-    </li>
+      <li>No posts yet</li>
     {{ end }}
   </ul>
 </content>
