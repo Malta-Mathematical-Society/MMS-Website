@@ -1,6 +1,6 @@
 ---
 title: "Freshers' Social"
-event-id: "social-10-2026"
+eventId: "social-10-2026"
 date: 2026-10-01
 startDate: 2026-10-15T18:00:00
 endDate: 2026-10-15T23:00:00

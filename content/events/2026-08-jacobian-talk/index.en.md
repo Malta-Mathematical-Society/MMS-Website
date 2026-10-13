@@ -1,6 +1,6 @@
 ---
 title: 'Beyond the Jacobian Conjecture'
-event_id: "jacobian-2026"
+eventId: "jacobian-2026"
 date: 2026-08-26T18:00:00
 startDate: 2026-08-26T18:00:00
 endDate: 2026-08-26T20:00:00

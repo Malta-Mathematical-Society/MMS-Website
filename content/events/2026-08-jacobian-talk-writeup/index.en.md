@@ -1,6 +1,6 @@
 ---
 title: "Beyond the Jacobian Conjecture: Writeup!"
-event_id: "jacobian-2026"
+eventId: "jacobian-2026"
 date: 2026-08-29
 EventPostType: "writeup"
 ---
