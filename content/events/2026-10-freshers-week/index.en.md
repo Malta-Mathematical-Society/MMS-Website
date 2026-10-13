@@ -1,5 +1,6 @@
 +++
 title = "Freshers' Week 2026"
+date = 2026-10-01
 startDate = 2026-10-05T09:00:00
 endDate = 2026-10-09T15:00:00
 isDateConfirmed = true

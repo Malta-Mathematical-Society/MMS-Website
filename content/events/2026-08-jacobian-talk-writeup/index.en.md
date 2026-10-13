@@ -1,6 +1,7 @@
 ---
 title: "Beyond the Jacobian Conjecture: Writeup!"
-date: 2026-08-17
+event_id: "jacobian-2026"
+date: 2026-08-29
 EventPostType: "writeup"
 author: "Marina Gusarov"
 ---
