@@ -4,40 +4,51 @@
         {{- $isDateConfirmed := .Params.isDateConfirmed -}}
         {{- $isLocationConfirmed := .Params.isLocationConfirmed }}
 
-        <h1>{{ .Title }}</h1>
+        {{- if ne .Params.EventPostType "writeup" }}
+            <h1>{{ .Title }}</h1>
 
-        {{/* Print date and time if they are confirmed, otherwise print TBA.
-        Print the end date only if it differs from the start date */}}
-        <b>Date & Time: </b>
-        {{- if $isDateConfirmed -}}
-            {{- $start := time.AsTime .Params.startDate -}}
-            {{- $end := time.AsTime .Params.endDate -}}
+            {{/* Print date and time if they are confirmed, otherwise print TBA.
+            Print the end date only if it differs from the start date */}}
+            <b>Date & Time: </b>
+            {{- if $isDateConfirmed -}}
+                {{- $start := time.AsTime .Params.startDate -}}
+                {{- $end := time.AsTime .Params.endDate -}}
 
-            {{ $start | time.Format ":date_long" }} {{ $start | time.Format ":time_short" }}
-            -
-            {{ if eq ($start.Format "2006-01-02") ($end.Format "2006-01-02") }}
-                {{ $end | time.Format ":time_short" }}
+                {{ $start | time.Format ":date_long" }} {{ $start | time.Format ":time_short" }}
+                -
+                {{ if eq ($start.Format "2006-01-02") ($end.Format "2006-01-02") }}
+                    {{ $end | time.Format ":time_short" }}
+                {{- else -}}
+                    {{ $end | time.Format ":date_long" }} {{ $end | time.Format ":time_short" }}
+                {{- end -}}
             {{- else -}}
-                {{ $end | time.Format ":date_long" }} {{ $end | time.Format ":time_short" }}
+                TBA
             {{- end -}}
-        {{- else -}}
-            TBA
-        {{- end -}}
 
-        {{/* Print the location if it is confirmed, otherwise print TBA.
-        If a location pin is present, embed it as a hyperlink */}}
-        <br><b>Location: </b>
-        {{- if $isLocationConfirmed -}}
-            {{- if .Params.locationPin -}}
-                <a href="{{ .Params.locationPin }}">{{ .Params.location }}</a>
+            {{/* Print the location if it is confirmed, otherwise print TBA.
+            If a location pin is present, embed it as a hyperlink */}}
+            <br><b>Location: </b>
+            {{- if $isLocationConfirmed -}}
+                {{- if .Params.locationPin -}}
+                    <a href="{{ .Params.locationPin }}">{{ .Params.location }}</a>
+                {{- else -}}
+                    {{ .Params.location }}
+                {{- end -}}
             {{- else -}}
-                {{ .Params.location }}
+                TBA
             {{- end -}}
+
         {{- else -}}
-            TBA
+            <h2>{{ .Title }}</h2>
+            <div class="writeup-meta">
+                {{ if .Date }}
+                    <span class="published-date"> <i>Published {{ .Date | time.Format "Jan 02 2006" }}</i></span>
+                {{ end }}
+            </div>
         {{- end -}}
 
         {{/* Print the event description */}}
         {{- .Content -}}
+            
 </div>
 {{ end }}

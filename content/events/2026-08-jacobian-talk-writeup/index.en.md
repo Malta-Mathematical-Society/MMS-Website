@@ -1,7 +1,7 @@
 ---
-title: 'Jacobian Conjecture Panel: Postbrief! '
-date: 2026-10-20
-event_type: "writeup"
+title: "Beyond the Jacobian Conjecture: Writeup!"
+date: 2026-08-17
+EventPostType: "writeup"
 author: "Marina Gusarov"
 ---
 
@@ -9,5 +9,4 @@ This was the first event planned by the new executive team, and we are rather pr
 
 Looking backwards, we are especially cool because we organized this talk quickly enough on a topic so relevant,we did it before the news about Navier-Stokes B)  
 
-[image1](image1.jpg)
-[image2](image2.jpg)
+![image1](image1.jpg)

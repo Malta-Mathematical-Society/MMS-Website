@@ -1,5 +1,6 @@
 ---
 title: 'Beyond the Jacobian Conjecture'
+date: 2026-08-26T18:00:00
 startDate: 2026-08-26T18:00:00
 endDate: 2026-08-26T20:00:00
 isDateConfirmed: true
