@@ -84,7 +84,7 @@
         {{ with $latest }}
             {{/* 2. Get current language translation, or default back to EN */}}
             {{ $target := index (where .AllTranslations "Lang" $.Lang) 0 | default . }}
-            <div class="comic-preview">
+            <div class="col">
                 <a href="{{ $target.RelPermalink }}" title="{{ $target.Title }}">
                     <p>
                         {{ if $target.Resources.GetMatch "comic*" }}
