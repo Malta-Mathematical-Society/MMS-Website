@@ -1,6 +1,5 @@
 {{ define "main" }}
 <div class="home-grid">
-    <div class="event-card">
         <ul>
             {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
 
@@ -48,10 +47,8 @@
                 {{ end }}
             {{ end }}
         </ul>
-    </div>
-    <!-- DIVIDER 1 -->
-    <div class="p-divider-y" role="separator"></div>
 
+        <!-- DIVIDER 1 -->
     
         {{/* 1. Fetch writeups from the primary (EN) site */}}
         {{ $enSite := index .Sites 0 }}
@@ -74,8 +71,6 @@
         {{ end }}
 
     <!-- DIVIDER 2 -->
-    <div class="p-divider-y" role="separator"></div>
-
         {{/* 1. Fetch comics from the primary (EN) site */}}
         {{ $enSite := index .Sites 0 }}
         {{ $comics := where $enSite.RegularPages "Type" "comics" }}

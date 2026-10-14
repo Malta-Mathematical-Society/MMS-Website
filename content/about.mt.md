@@ -2,8 +2,6 @@
 title = 'Dwarna'
 +++
 
-# Dwarna
-
 Is-Soċjetà Maltija tal-Matematika (MMS) hija soċjetà ibbażata f'Malta bl-iskop li żżid il-popolarità u l-għarfien tal-matematika mal-Maltin billi torganizza lekċers u attivitajiet miftuħa għall-pubbliku. Matul iż-żminijiet, il-matematika qajla kienet attività solitarja. Is-Soċjetà Maltija tal-Matematika temmen li bil-kollaborazzjoni, bid-dibattitu, u bil-kurżità ta' kull individwu, il-matematika tista' timxi 'l quddiem. Il-viżjoni tagħna mhix biss li nippromwovu t-tagħrif matematiku, iżda wkoll li niċċelebraw l-aspett soċjali tal-matematika billi ngħaqqdu flimkien l-istudenti, l-akkademiċi, u lil dawk li jgħożżu dan is-suġġett tant sabiħ.
 
 Is-Soċjetà Maltija tal-Matematika ġiet imwaqqfa fl-1998 mill-Prof. Joseph Muscat, professur fid-Dipartiment tal-Matematika, fi ħdan il-Fakultà tax-Xjenza tal-Università ta' Malta. L-ewwel attività li qatt organizzat l-MMS kienet it-taħdita _Discovering Fractals_ (Niskopru l-Frattali) mogħtija mis-Sa Ċettina Gauci Pulo, li dak iż-żmien kienet assistent lettur fil-Ġ.F. Abela Junior College tal-Università ta' Malta. L-ewwel kumitat eżekuttiv għall-MMS kien jikkonsisti fil-Prof. Joseph Muscat (President), Audrienne Cutajar Bezzina, Ċettina Gauci Pulo, Dr James L. Borg u Jill Kirkstadt. Sfortunatament, matul is-snin 2010 sal-2019, is-soċjetà kienet wieqfa tista' tgħid għalkollox.

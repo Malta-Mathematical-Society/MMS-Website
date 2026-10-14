@@ -36,7 +36,8 @@
     text-align: left;
     margin: 0;
     background-color: var(--background-color);
-
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   main {
@@ -414,90 +415,70 @@
 /* ==========================================================================
    6. HOME PAGE
    ========================================================================== */
+/* Target main ONLY on the index page where .home-grid exists */
+  main:has(.home-grid) {
+    /* 1. Reset standard layout box & borders */
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    
+    /* 2. Turn main into the horizontal side-scroll track */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    
+    /* 3. Smooth momentum scrolling & snap behavior */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
 
-   .home-grid ul {
-  padding:0
+  /* 4. Remove corner circle nodes on index page only */
+  main:has(.home-grid)::before,
+  main:has(.home-grid)::after,
+  main:has(.home-grid) > *:last-child::before,
+  main:has(.home-grid) > *:last-child::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .home-grid ul, p {
+    padding: 0;
+    margin: 0;
+  }
+
+  .home-grid {
+  display: flex !important;
+  flex-direction: row !important; /*text allighned with image*/
+  width: max-content !important;
   }
 
   .home-grid h3 {
-  font-weight: normal;
-  text-align: center;
-  font-style: italic;
+    font-weight: normal;
+    font-style: italic;
+    margin-top: 0;
+  } 
+
+  .home-grid img {  
+    /* 1. Prevent vertical squishing on short screens */
+    min-height: 300px !important; /* Set your desired minimum height floor */
+    
+    /* 2. Prevent excessive growth on ultra-tall screens */
+    max-height: 700px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* Flip layout from horizontal row back to vertical column stack */
+    .home-grid {
+      flex-direction: column !important;
+      width: 100% !important;
+    }
   }
 
-/* Horizontal Divider (if used elsewhere) */
-  .p-divider-x {
-    background-color: #000000;
-    width: 2px;
-    height: 100%;
-    position: relative;
-  }
-
-  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
-  .p-divider-y {
-    background-color: #000000;
-    width: 100%;
-    height: 2px;
-    position: relative;
-  }
-
-  /* Horizontal Divider (if used elsewhere) */
-  .p-divider-x {
-    background-color: #000000;
-    width: 2px;
-    height: 100%;
-    position: relative;
-  }
-
-  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
-  .p-divider-y {
-    background-color: #000000;
-    width: 100%;
-    height: 2px;
-    position: relative;
-  }
-
-  /* Base style for both end circles */
-  .p-divider-y::before,
-  .p-divider-y::after {
-    content: "";
-    position: absolute;
-    width: var(--node-diameter);
-    height: var(--node-diameter);
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    margin-left:-1px;
-    margin-right:-1px;
-    z-index: 2;
-  }
-
-  /* Horizontal alignment of circles for the stacked layout */
-  .p-divider-y::before {
-    left: 0;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .p-divider-y::after {
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-  }
-
-
-  /* Horizontal alignment of circles for the stacked layout */
-  .p-divider-y::before {
-    left: 0;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .p-divider-y::after {
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-  }
 
 /* ==========================================================================
    7. COMIC VIEWER

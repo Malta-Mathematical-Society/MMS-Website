@@ -1,0 +1,75 @@
+
+  /* Horizontal Divider (if used elsewhere) */
+  .p-divider-x {
+    background-color: #000000;
+    width: 2px;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
+  .p-divider-y {
+    background-color: #000000;
+    width: 100%;
+    height: 2px;
+    position: relative;
+  }
+
+
+  /* Horizontal Divider (if used elsewhere) */
+  .p-divider-x {
+    background-color: #000000;
+    width: 2px;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
+  .p-divider-y {
+    background-color: #000000;
+    width: 100%;
+    height: 2px;
+    position: relative;
+  }
+
+  /* Base style for both end circles */
+  .p-divider-y::before,
+  .p-divider-y::after {
+    content: "";
+    position: absolute;
+    width: var(--node-diameter);
+    height: var(--node-diameter);
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    margin-left:-1px;
+    margin-right:-1px;
+    z-index: 2;
+  }
+
+  /* Horizontal alignment of circles for the stacked layout */
+  .p-divider-y::before {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .p-divider-y::after {
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+
+  /* Horizontal alignment of circles for the stacked layout */
+  .p-divider-y::before {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .p-divider-y::after {
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%); 
+  }
