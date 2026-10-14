@@ -6,7 +6,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
   
   :root {
-    --width: 720px;
+    --width: 800px;
     --font-main: 'Lato', Verdana, sans-serif;
     --font-secondary: 'Lato', Verdana, sans-serif;
     --font-scale: 1.25rem;
@@ -106,9 +106,12 @@
   }
 
   img {
+    max-height: 80vh;
+    width: auto;
     max-width: 100%;
-    height: auto;
+    object-fit: contain;
     display: block;
+    margin: 0 auto; /*center*/
   }
 
 /* ==========================================================================
