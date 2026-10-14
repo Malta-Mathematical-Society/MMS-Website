@@ -678,5 +678,190 @@ footer a:hover {
   color: #ffffff;
 }
 
+/* ==========================================================================
+   9. MEMBERSHIP FORM
+   ========================================================================== */
+.membership-form-wrapper {
+  margin: 1.5rem 0;
+}
+
+.membership-form-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.membership-form-wrapper .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.membership-form-wrapper label,
+.membership-form-wrapper .fieldset-label {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.membership-form-wrapper .required-star {
+  color: var(--link-color);
+  font-weight: 700;
+}
+
+.membership-form-wrapper input[type="text"],
+.membership-form-wrapper input[type="tel"],
+.membership-form-wrapper input[type="email"] {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #000000;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.membership-form-wrapper input[type="text"]:focus,
+.membership-form-wrapper input[type="tel"]:focus,
+.membership-form-wrapper input[type="email"]:focus {
+  border-color: #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.field-note {
+  margin: 0.1rem 0 0.5rem 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #222222;
+}
+
+.tier-options,
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tier-card,
+.payment-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.tier-card:hover,
+.payment-card:hover {
+  background-color: #fff9e6;
+}
+
+.tier-card input[type="radio"],
+.payment-card input[type="radio"] {
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
+.tier-info strong,
+.payment-info strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.payment-action a {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.revolut-qr-container {
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  background-color: #f7f9fa;
+  border: 1px dashed #000000;
+  display: inline-block;
+  text-align: center;
+}
+
+.revolut-qr-container .qr-label {
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem 0;
+  color: #333333;
+}
+
+.revolut-qr-image {
+  max-width: 160px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid #000000;
+  background: #ffffff;
+  display: block;
+}
+
+.student-details-box {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-left: 4px solid #000000;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.privacy-notice {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.btn-membership-submit {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000000;
+  background-color: var(--header-bg);
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-membership-submit:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.btn-membership-submit:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+.btn-membership-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 </style>
 
