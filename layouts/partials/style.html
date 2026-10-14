@@ -18,7 +18,7 @@
     --blockquote-color: #000000;
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
-    --footer-bg: #0471cc;        /* Red footer stripe */
+    --footer-bg: #ab362e;        /* Red footer stripe */
     --node-diameter: 30px;
   }
 
@@ -42,7 +42,7 @@
 
   main {
     max-width: var(--width);
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem;
     margin: auto;
     border: 2px solid #000000;
     position: relative;
@@ -195,8 +195,6 @@
     padding: 10px 20px;
     gap: 1.5rem;
     width: 100%;
-    margin: auto;
-    outline: 2px solid #000000;
   }
 
 @media (max-width: 700px) {     /* Set this to the exact width where items get close */
@@ -483,109 +481,101 @@
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
-.comic-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem; /* Spacious text-based separation */
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-secondary);
-  font-weight: 700;
-}
+  .comic-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* Spacious text-based separation */
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+  }
 
-/* Treat navigation items like normal text links */
-.comic-nav a {
-  color: var(--visited-color);
-  text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-}
+  /* Treat navigation items like normal text links */
+  .comic-nav a {
+    color: var(--visited-color);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
 
-.comic-nav a:hover {
-  color: var(--link-color);
-}
+  .comic-nav a:hover {
+    color: var(--link-color);
+  }
 
-/* Disabled state (e.g., on the first or last page of the comic) */
-.comic-nav .disabled {
-  color: var(--text-color);
-  opacity: 0.3;
-  pointer-events: none;
-  text-decoration: none;
-}
+  /* Disabled state (e.g., on the first or last page of the comic) */
+  .comic-nav .disabled {
+    color: var(--text-color);
+    opacity: 0.3;
+    pointer-events: none;
+    text-decoration: none;
+  }
 
-.comic-transcript {
-  padding: 0rem 2rem 1rem;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+  .comic-transcript {
+    padding: 0rem 2rem 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 
-/* 1. Hide default triangle */
-.comic-transcript summary {
-  min-width: 0;
-  font-family: inherit;
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  display: inline-block;
-  overflow-wrap: anywhere;
-}
+  /* 1. Hide default triangle */
+  .comic-transcript summary {
+    min-width: 0;
+    font-family: inherit;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    overflow-wrap: anywhere;
+  }
 
-.comic-transcript summary::-webkit-details-marker {
-  display: none; /* remove auto trianlge */
-}
+  .comic-transcript summary::-webkit-details-marker {
+    display: none; /* remove auto trianlge */
+  }
 
-pre,
-.transcript pre {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;  /* Preserves linebreaks but wraps at container boundary */
-}
+  pre,
+  .transcript pre {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;  /* Preserves linebreaks but wraps at container boundary */
+  }
 
-/*  Add custom arrow */
-.comic-transcript summary::before {
-  content: "＞";
-  display: inline-block;
-}
+  /*  Add custom arrow */
+  .comic-transcript summary::before {
+    content: "＞";
+    display: inline-block;
+  }
 
 
-/* 3. Spin on open */
-.comic-transcript[open] summary::before {
-  transform: rotate(90deg);
-}
+  /* 3. Spin on open */
+  .comic-transcript[open] summary::before {
+    transform: rotate(90deg);
+  }
 
-.comic-transcript summary:hover {
-  color: var(--link-color);
-}
+  .comic-transcript summary:hover {
+    color: var(--link-color);
+  }
 
 /* ==========================================================================
    8. FOOTER
    ========================================================================== */
 
-footer {
-  background: var(--footer-bg);
-  text-align: center;
-  font-size: 1rem;
-  padding: 10px;
-  outline: 2px solid #000000;
-}
+  footer {
+    background: var(--footer-bg);
+    text-align: center;
+    padding: 10px;
+  }
 
-footer p {
-  margin: 0;
-  color: #000000;
-}
+  footer a {
+    color: inherit;
+  }
 
-footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-footer a:hover {
-  color: #ffffff;
-}
+  footer a:hover {
+    color: #ffffff;
+  }
 
 </style>
 
