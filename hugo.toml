@@ -58,6 +58,10 @@ contentDir = "content"
 [params.mailerlite]
   action_url = "https://assets.mailerlite.com/jsonp/2669609/forms/199945518538819358/subscribe"
 
+# Google Form endpoint for Membership registration
+[params.membership]
+  action_url = "https://docs.google.com/forms/d/e/1FAIpQLSeUn8IBGGqY9SwPMsM_4vTGv__Habb7kowCXAk5_WpvUxQEZg/formResponse"
+
 [outputFormats]
   [outputFormats.Email]
     mediaType = "application/json"

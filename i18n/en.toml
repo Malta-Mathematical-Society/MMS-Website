@@ -70,4 +70,83 @@ other = "Latest comic"
 [previous_event]
 other = "Previous event"
 
+# Membership Form Translations
+[membership_title]
+other = "Become a Member"
+
+[membership_subtitle]
+other = "Join the Malta Mathematical Society. Membership is valid for 1 full year from the date of registration."
+
+[member_name]
+other = "Name"
+
+[member_surname]
+other = "Surname"
+
+[member_id_card]
+other = "ID Card Number"
+
+[member_phone]
+other = "Phone Number"
+
+[member_email]
+other = "Email Address"
+
+[member_type]
+other = "Membership Type"
+
+[member_type_desc]
+other = "IMPORTANT: To be eligible for the reduced student membership fee, one must be a Sixth Form, Undergraduate, Masters, or PhD student at a Maltese institution."
+
+[member_student]
+other = "Student — €8"
+
+[member_non_student]
+other = "Non-Student — €15"
+
+[member_course]
+other = "Current Course"
+
+[member_course_placeholder]
+other = "e.g., B.Sc. (Hons) Mathematics"
+
+[member_year]
+other = "Year in Course"
+
+[member_year_placeholder]
+other = "e.g., 1, 2, 3"
+
+[member_grad_year]
+other = "Expected Graduation Year"
+
+[member_grad_year_placeholder]
+other = "e.g., 2027"
+
+[member_payment_method]
+other = "Payment Method"
+
+[member_pay_revolut_label]
+other = "Revolut"
+
+[member_pay_revolut_link]
+other = "Tap here to pay on Revolut"
+
+[member_pay_revolut_qr_note]
+other = "Scan QR code or tap the button above to pay:"
+
+[member_pay_bov_label]
+other = "BoV Mobile Pay (99963942 — Matthew Fenech)"
+
+[member_pay_cash_label]
+other = "Cash (Please contact us to arrange payment)"
+
+[member_payment_note]
+other = "Please send the membership fee using your selected payment method after submitting this form."
+
+[member_submit]
+other = "Submit Registration"
+
+[member_submitting]
+other = "Submitting..."
+
 
