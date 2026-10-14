@@ -1,7 +1,7 @@
 ---
 title: "Freshers Week: It's done!"
 eventId: "freshers-week-2026"
-date: 2026-10-13
+date: 2026-10-10
 EventPostType: "writeup"
 mainImage: "image7.webp"
 ---
