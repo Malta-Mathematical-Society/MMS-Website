@@ -1,66 +1,66 @@
-
-<div class = "header-stripe">
+<div class="header-stripe">
     <!-- Webpage Header Logo + language toggle -->
     <div class="header-left">
-      {{ with site.Params.homeIcon }}
-        <a href="{{ site.Home.RelPermalink }}">
-          <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo" />
-        </a>
-      {{ end }}
-      {{if .IsTranslated}}
-        <div class="lang-switch">
-          {{ $currentPage := . }}
-          {{ range site.Languages }}
-            {{ $langCode := .Name }}
-            {{ $langLabel := .Name }}
-            {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
+        {{ with site.Params.homeIcon }}
+            <a href="{{ site.Home.RelPermalink }}">
+                <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo"/>
+            </a>
+        {{ end }}
+        {{ if .IsTranslated }}
+            <div class="lang-switch">
+                {{ $currentPage := . }}
+                {{ range site.Languages }}
+                    {{ $langCode := .Name }}
+                    {{ $langLabel := .Name }}
+                    {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
 
-            {{ if $match }}
-              {{ $translatedPage := index $match 0 }}
-              <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
-                {{ $langLabel }}
-              </a>
-            {{ end }}
-          {{ end }}
-        </div>
-      {{ end }}
+                    {{ if $match }}
+                        {{ $translatedPage := index $match 0 }}
+                        <a href="{{ $translatedPage.RelPermalink }}"
+                           class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
+                            {{ $langLabel }}
+                        </a>
+                    {{ end }}
+                {{ end }}
+            </div>
+        {{ end }}
     </div>
 
 
-  <!-- Global Navigation Links -->
+    <!-- Global Navigation Links -->
     <nav class="site-nav">
-      {{ with .Site.GetPage "/about" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
-      {{ end }}
+        {{ with .Site.GetPage "/about" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
+        {{ end }}
 
-      {{ with site.GetPage "/membership" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
-      {{ end }}
+        {{ with site.GetPage "/membership" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
+        {{ end }}
 
-      {{ with site.GetPage "/mailing-list" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
-      {{ end }}
+        {{ with site.GetPage "/mailing-list" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
+        {{ end }}
 
         <a href="{{ "statute.pdf" | relURL }}">{{ i18n "nav_statute" }}</a>
 
-      <!-- Archive Dropdown -->
-      <div class="dropdown">
-        <button class="dropdown-title" type="button" aria-expanded="false">
-          {{ i18n "nav_archive" }}
-        </button>
-        <div class="dropdown-content">
-          {{ with site.GetPage "/events" }}
-            <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
-          {{ end }}
+        <!-- Archive Dropdown -->
+        <div class="dropdown">
+            <button class="dropdown-title" type="button" aria-expanded="false">
+                {{ i18n "nav_archive" }}
+            </button>
+            <div class="dropdown-content">
+                {{ with site.GetPage "/events" }}
+                    <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
+                {{ end }}
 
-          {{ with site.GetPage "/comics" }}
-            <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
-          {{ end }}
+                {{ with site.GetPage "/comics" }}
+                    <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
+                {{ end }}
 
-          {{ with site.GetPage "/newsletters" }}
-            <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
-          {{ end }}
+                {{ with site.GetPage "/newsletters" }}
+                    <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
+                {{ end }}
+            </div>
         </div>
-      </div>
     </nav>
 </div>
