@@ -11,6 +11,9 @@ other = "Lista tal-Email"
 [nav_archive]
 other = "Arkivju"
 
+[nav_statute]
+other = "Statut"
+
 # Archive Dropdown
 [nav_comics]
 other = "Komiks"

@@ -1,5 +1,5 @@
 
-<div class = "header-stripe"> 
+<div class = "header-stripe">
     <!-- Webpage Header Logo + language toggle -->
     <div class="header-left">
       {{ with site.Params.homeIcon }}
@@ -14,7 +14,7 @@
             {{ $langCode := .Name }}
             {{ $langLabel := .Name }}
             {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
-            
+
             {{ if $match }}
               {{ $translatedPage := index $match 0 }}
               <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
@@ -25,7 +25,7 @@
         </div>
       {{ end }}
     </div>
-    
+
 
   <!-- Global Navigation Links -->
     <nav class="site-nav">
@@ -41,6 +41,8 @@
         <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
       {{ end }}
 
+        <a href="{{ "statute.pdf" | relURL }}">{{ i18n "nav_statute" }}</a>
+
       <!-- Archive Dropdown -->
       <div class="dropdown">
         <button class="dropdown-title" type="button" aria-expanded="false">
@@ -50,7 +52,7 @@
           {{ with site.GetPage "/events" }}
             <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
           {{ end }}
-          
+
           {{ with site.GetPage "/comics" }}
             <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
           {{ end }}

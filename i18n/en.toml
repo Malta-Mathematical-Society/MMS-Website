@@ -10,6 +10,9 @@ other = "Mailing List"
 [nav_archive]
 other = "Archive"
 
+[nav_statute]
+other = "Statute"
+
 # Archive Dropdown
 [nav_comics]
 other = "Comics"
