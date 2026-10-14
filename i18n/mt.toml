@@ -22,8 +22,8 @@ other = "Attivitajiet Passati"
 other = "Bullettini"
 
 # Headers and Titles
-[upcoming_events]
-other = "Attivitajiet li Ġejjin"
+[upcoming_event]
+other = "Attività li Ġejja"
 
 #mailing list translations
 [mailing_title]

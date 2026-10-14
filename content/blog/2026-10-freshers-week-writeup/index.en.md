@@ -1,5 +1,5 @@
 ---
-title: "Freshers Week: It's done!"
+title: "Freshers Week Writeup"
 eventId: "freshers-week-2026"
 date: 2026-10-10
 EventPostType: "writeup"
