@@ -2,6 +2,7 @@
 title = "Mailing List"
 +++
 
-Get our updates delievered fresh to your email
+## Coming Soon
 
-{{< mailing-list >}}
+Big things are happening ...
+Watch this space to sign up to our mailing list and receive updates on new events, comics, and more!
