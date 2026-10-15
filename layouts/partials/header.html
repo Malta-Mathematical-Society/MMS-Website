@@ -29,24 +29,21 @@
 
     <!-- Global Navigation Links -->
     <nav class="site-nav">
-        {{ with .Site.GetPage "/about" }}
+        {{- with .Site.GetPage "/about" -}}
             <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
-        {{ end }}
-
-        {{ with site.GetPage "/membership" }}
+        {{- end -}}
+        {{- with site.GetPage "/membership" -}}
             <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
-        {{ end }}
-
-        {{ with site.GetPage "/mailing-list" }}
+        {{- end }}
+        {{- with site.GetPage "/mailing-list" -}}
             <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
-        {{ end }}
-
+        {{- end -}}
+        
         <a href="{{ "statute.pdf" | relURL }}">{{ i18n "nav_statute" }}</a>
 
-        {{ with site.GetPage "/archive" }}
+        {{- with site.GetPage "/archive" -}}
           <a href="{{ .RelPermalink }}">{{ i18n "nav_archive" }}</a>
-        {{ end }}
+        {{- end -}}
 
-        </div>
     </nav>
 </div>

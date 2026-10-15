@@ -3,18 +3,18 @@
    1. VARIABLES, RESETS & BASE LAYOUT
    ========================================================================== */
 /*import Lato, the font of our logo*/
-  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
   
   :root {
     --width: 800px;
-    --font-main: 'Lato', Verdana, sans-serif;
-    --font-secondary: 'Lato', Verdana, sans-serif;
+    --font-main: "Roboto", "Lato", Verdana, sans-serif;
+    --font-secondary: "Roboto", "Lato", sans-serif;
     --font-scale: 1.25rem;
     --background-color: #7aaafa;
     --heading-color: #000000;
     --text-color: #000000;
-    --link-color: #971C13;
-    --visited-color: #1a1397;
+    --link-color: #1a1397;
+    --visited-color: #971C13;
     --blockquote-color: #000000;
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
@@ -135,7 +135,7 @@
   a {
     color: var(--link-color);
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   a:hover {
@@ -187,112 +187,99 @@
    3. HEADER & NAVIGATION
    ========================================================================== */
   .header-stripe {
-    display:flex;
-    flex-wrap: nowrap;
-    justify-content: space-between; /*the x-axis*/
-    align-items: center; /*the y-axis center*/
+    /*look*/
     background-color: var(--header-bg);
-    padding: 10px 20px;
-    gap: 1.5rem;
+    padding: 10px 30px 10px 15px;
     width: 100%;
-  }
 
-@media (max-width: 700px) {     /* Set this to the exact width where items get close */
-  .header-stripe {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  /* Row 1: Spreads Logo to left wall and Language Switch to right wall */
-  .header-left {
+    
+    /*flexbox settings*/
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap; /*make items wrap rather than overflow*/
+    align-items: center; /*the y-axis center*/
+    gap: 1rem;
     justify-content: space-between;
-    width: 100%;
   }
 
-  /* Row 2: Takes up the entire width on its own line below */
-  .site-nav {
-    justify-content: space-between; /* Distributes links evenly across the line */
-    position: relative;
-    display: inline-block;
+  .site-nav{
+    /*flexbox settings*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
   }
-}
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;                      /* Space between logo and language toggle */
-  flex: 0 0 auto;
-}
+  .site-nav a {
+    font-weight: 700;
+    white-space: nowrap;
+    justify-content: center;
+  }
 
-.site-logo {
-  height: 64px;
-  width: auto;
-  display: block;
-  margin: 0 0.5rem;
-}
+  .site-nav a:hover {
+      color: var(--visited-color);
+  }
 
-.site-nav{
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-  gap: 1rem;
-  margin-left: auto; /* Hugs the right wall on wide screens */
-}
+  .header-left {
+    /*look*/
+    /*flexbox settings*/
+    display: flex;
+    align-items: center; /* y-axis alignment */
+    gap: 1rem; /* Space between logo and language toggle */
+    flex: 0 0 auto;
+  }
 
-.site-nav a {
-  color: var(--link-color);
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-}
+  .site-logo {
+    height: 64px;
+    width: auto;
+    display: block;
+  }
 
-.site-nav a:hover {
+  /* ==========================================================================
+    4. LANGUAGE SWITCHER TOGGLE
+    ========================================================================== */
+
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    padding-left: 0.5rem;
+    border-radius: 0;
+  }
+
+  /* Style the language links */
+  .lang-switch a {
+    display: inline;
+    padding: 0;
+    font-weight: 700;
     color: var(--visited-color);
-}
+    text-decoration: none;
+    white-space: nowrap;
 
-/* ==========================================================================
-   4. LANGUAGE SWITCHER TOGGLE
-   ========================================================================== */
+  }
 
-.lang-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: none;
-  padding-left: 0.5rem;
-  border-radius: 0;
-}
+  .lang-switch a:hover {
+    color: var(--link-color);
+  }
 
-/* Style the language links */
-.lang-switch a {
-  display: inline;
-  padding: 0;
-  font-weight: 700;
-  color: var(--link-color);
-}
+  /* Active language formatting */
+  .lang-switch a.active {
+    color: var(--heading-color);
+  }
 
-.lang-switch a:hover {
-  color: var(--visited-color);
-}
-
-/* Active language formatting */
-.lang-switch a.active {
-  color: var(--heading-color);
-}
-
-/* Separate the language options cleanly with a slash */
-.lang-switch a + a::before {
-  content: "/";
-  margin-right: 5px;
-  color: var(--text-color);
-  font-weight: 700;
-}
+  /* Separate the language options cleanly with a slash */
+  .lang-switch a + a::before {
+    content: "/";
+    margin-right: 5px;
+    color: var(--text-color);
+    font-weight: 700;
+  }
 
 /* ==========================================================================
    5. PAGE-SPECIFIC COMPONENTS
    ========================================================================== */
-
 
   .title:hover {
     text-decoration: none;
@@ -518,18 +505,21 @@
     padding: 0rem 2rem 1rem;
     max-width: 100%;
     box-sizing: border-box;
+    font-size: 1rem;
+    font-family: monospace
   }
 
   /* 1. Hide default triangle */
   .comic-transcript summary {
     min-width: 0;
     font-family: inherit;
+    font-size: 1rem;
     list-style: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     display: inline-block;
-    overflow-wrap: anywhere;
+    margin:
   }
 
   .comic-transcript summary::-webkit-details-marker {
