@@ -2,10 +2,9 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: [ "wip-display" ]
-  workflow_dispatch:
-  schedule:
-    - cron: "0 22 * * *"
+    branches: [ "master" ] #trigger automatic build when code is pushed/merged to master
+  workflow_dispatch: #no sceduled midnight builds, because we dont need it.
+  #only time we need to re-build is when we merge.
 
 permissions:
   contents: read
