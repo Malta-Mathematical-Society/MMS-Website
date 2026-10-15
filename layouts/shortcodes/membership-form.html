@@ -1,0 +1,216 @@
+{{ $actionUrl := site.Params.membership.action_url | default "https://docs.google.com/forms/d/e/1FAIpQLSeUn8IBGGqY9SwPMsM_4vTGv__Habb7kowCXAk5_WpvUxQEZg/formResponse" }}
+
+<div class="membership-form-wrapper">
+  <form id="membership-form" action="{{ $actionUrl }}" method="POST">
+
+    <!-- Row: Name and Surname -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label for="member-name">{{ i18n "member_name" }} <span class="required-star">*</span></label>
+        <input type="text" id="member-name" name="entry.1344288062" required autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="member-surname">{{ i18n "member_surname" }} <span class="required-star">*</span></label>
+        <input type="text" id="member-surname" name="entry.1609575475" required autocomplete="family-name">
+      </div>
+    </div>
+
+    <!-- Row: ID Card and Phone -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label for="member-idcard">{{ i18n "member_id_card" }} <span class="required-star">*</span></label>
+        <input type="text" id="member-idcard" name="entry.530620062" required placeholder="e.g. 123456M">
+      </div>
+      <div class="form-group">
+        <label for="member-phone">{{ i18n "member_phone" }} <span class="required-star">*</span></label>
+        <input type="tel" id="member-phone" name="entry.879526698" required autocomplete="tel" placeholder="+356 ...">
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="member-email">{{ i18n "member_email" }} <span class="required-star">*</span></label>
+      <input type="email" id="member-email" name="entry.1555693265" required autocomplete="email" placeholder="name@example.com">
+    </div>
+
+    <!-- Membership Tier Selection -->
+    <div class="form-group fieldset-group">
+      <span class="fieldset-label">{{ i18n "member_type" }} <span class="required-star">*</span></span>
+      <p class="field-note">{{ i18n "member_type_desc" }}</p>
+      
+      <div class="tier-options">
+        <label class="tier-card" for="type-student">
+          <input type="radio" id="type-student" name="entry.1179460426" value="Student - €8" checked required>
+          <div class="tier-info">
+            <strong>{{ i18n "member_student" }}</strong>
+          </div>
+        </label>
+
+        <label class="tier-card" for="type-nonstudent">
+          <input type="radio" id="type-nonstudent" name="entry.1179460426" value="Non-Student - €15" required>
+          <div class="tier-info">
+            <strong>{{ i18n "member_non_student" }}</strong>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Student Details (Conditional) -->
+    <div id="student-fields-container" class="student-details-box">
+      <div class="form-group">
+        <label for="member-course">{{ i18n "member_course" }} <span class="required-star">*</span></label>
+        <input type="text" id="member-course" name="entry.2077739111" required placeholder="{{ i18n "member_course_placeholder" }}">
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label for="member-year">{{ i18n "member_year" }} <span class="required-star">*</span></label>
+          <input type="text" id="member-year" name="entry.712744177" required placeholder="{{ i18n "member_year_placeholder" }}">
+        </div>
+        <div class="form-group">
+          <label for="member-grad">{{ i18n "member_grad_year" }} <span class="required-star">*</span></label>
+          <input type="text" id="member-grad" name="entry.1001189470" required placeholder="{{ i18n "member_grad_year_placeholder" }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Method Selection -->
+    <div class="form-group fieldset-group">
+      <span class="fieldset-label">{{ i18n "member_payment_method" }} <span class="required-star">*</span></span>
+      <p class="field-note">{{ i18n "member_payment_note" }}</p>
+      
+      <div class="payment-options">
+        <label class="payment-card payment-card-revolut" for="pay-revolut">
+          <input type="radio" id="pay-revolut" name="entry.1143902079" value="Revolut - https://revolut.me/matthew26205/pocket/Q9WOIDa5Is" checked required>
+          <div class="payment-info">
+            <strong>{{ i18n "member_pay_revolut_label" }}</strong>
+            <span class="payment-action">
+              <a href="https://revolut.me/matthew26205/pocket/Q9WOIDa5Is" target="_blank" rel="noopener noreferrer">
+                {{ i18n "member_pay_revolut_link" }} &nearr;
+              </a>
+            </span>
+            <div id="revolut-qr-container" class="revolut-qr-container">
+              <p class="qr-label">{{ i18n "member_pay_revolut_qr_note" }}</p>
+              <img src="{{ "revolut-qr.png" | relURL }}" alt="Revolut Pocket QR Code" class="revolut-qr-image" width="160" height="160">
+            </div>
+          </div>
+        </label>
+
+        <label class="payment-card" for="pay-bov">
+          <input type="radio" id="pay-bov" name="entry.1143902079" value="BoV Pay - 99963942 (Matthew Fenech)" required>
+          <div class="payment-info">
+            <strong>{{ i18n "member_pay_bov_label" }}</strong>
+          </div>
+        </label>
+
+        <label class="payment-card" for="pay-cash">
+          <input type="radio" id="pay-cash" name="entry.1143902079" value="Cash (Please contact us to arrange payment)" required>
+          <div class="payment-info">
+            <strong>{{ i18n "member_pay_cash_label" }}</strong>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <p class="privacy-notice">
+      {{ printf (i18n "form_gdpr_notice") ("/privacy/" | relLangURL) | safeHTML }}
+    </p>
+
+    <button type="submit" id="member-submit-btn" class="btn-membership-submit">
+      {{ i18n "member_submit" }}
+    </button>
+  </form>
+</div>
+
+<script>
+  (function() {
+    const form = document.getElementById('membership-form');
+    const submitBtn = document.getElementById('member-submit-btn');
+    const studentBox = document.getElementById('student-fields-container');
+    const typeStudent = document.getElementById('type-student');
+    const typeNonStudent = document.getElementById('type-nonstudent');
+
+    const courseInput = document.getElementById('member-course');
+    const yearInput = document.getElementById('member-year');
+    const gradInput = document.getElementById('member-grad');
+
+    const payRevolut = document.getElementById('pay-revolut');
+    const payBov = document.getElementById('pay-bov');
+    const payCash = document.getElementById('pay-cash');
+    const revolutQr = document.getElementById('revolut-qr-container');
+
+    // Toggle Revolut QR display
+    function updatePaymentDisplay() {
+      if (revolutQr) {
+        revolutQr.style.display = payRevolut.checked ? 'block' : 'none';
+      }
+    }
+
+    payRevolut.addEventListener('change', updatePaymentDisplay);
+    payBov.addEventListener('change', updatePaymentDisplay);
+    payCash.addEventListener('change', updatePaymentDisplay);
+
+    // Toggle student questions depending on membership type selected
+    function updateStudentFields() {
+      if (typeNonStudent.checked) {
+        studentBox.style.display = 'none';
+        courseInput.required = false;
+        yearInput.required = false;
+        gradInput.required = false;
+        if (!courseInput.value) courseInput.value = 'N/A';
+        if (!yearInput.value) yearInput.value = 'N/A';
+        if (!gradInput.value) gradInput.value = 'N/A';
+      } else {
+        studentBox.style.display = 'block';
+        courseInput.required = true;
+        yearInput.required = true;
+        gradInput.required = true;
+        if (courseInput.value === 'N/A') courseInput.value = '';
+        if (yearInput.value === 'N/A') yearInput.value = '';
+        if (gradInput.value === 'N/A') gradInput.value = '';
+      }
+    }
+
+    typeStudent.addEventListener('change', updateStudentFields);
+    typeNonStudent.addEventListener('change', updateStudentFields);
+
+    function handleRedirect() {
+      window.location.href = '{{ with site.GetPage "membership-success" }}{{ .RelPermalink }}{{ else }}{{ "/membership-success/" | relLangURL }}{{ end }}';
+    }
+
+    // Submit handler using asynchronous fetch
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '{{ i18n "member_submitting" }}';
+
+      // Ensure Non-Student sets default N/A for student fields
+      updateStudentFields();
+
+      try {
+        const formData = new FormData(form);
+        const urlParams = new URLSearchParams(formData);
+
+        await fetch(form.action, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: urlParams.toString()
+        });
+      } catch (err) {
+        console.warn('Submission notice:', err);
+      }
+
+      // Smooth redirection to thank you page
+      setTimeout(handleRedirect, 400);
+    });
+  })();
+</script>

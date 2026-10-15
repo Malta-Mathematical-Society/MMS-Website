@@ -1,51 +1,52 @@
-
-<div class = "header-stripe"> 
+<div class="header-stripe">
     <!-- Webpage Header Logo + language toggle -->
     <div class="header-left">
-      {{ with site.Params.homeIcon }}
-        <a href="{{ site.Home.RelPermalink }}">
-          <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo" />
-        </a>
-      {{ end }}
-      {{if .IsTranslated}}
-        <div class="lang-switch">
-          {{ $currentPage := . }}
-          {{ range site.Languages }}
-            {{ $langCode := .Name }}
-            {{ $langLabel := .Name }}
-            {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
-            
-            {{ if $match }}
-              {{ $translatedPage := index $match 0 }}
-              <a href="{{ $translatedPage.RelPermalink }}" class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
-                {{ $langLabel }}
-              </a>
-            {{ end }}
-          {{ end }}
-        </div>
-      {{ end }}
+        {{ with site.Params.homeIcon }}
+            <a href="{{ site.Home.RelPermalink }}">
+                <img src="{{ . | absURL }}" alt="{{ site.Title }}" class="site-logo"/>
+            </a>
+        {{ end }}
+        {{ if .IsTranslated }}
+            <div class="lang-switch">
+                {{ $currentPage := . }}
+                {{ range site.Languages }}
+                    {{ $langCode := .Name }}
+                    {{ $langLabel := .Name }}
+                    {{ $match := where $currentPage.AllTranslations "Lang" $langCode }}
+
+                    {{ if $match }}
+                        {{ $translatedPage := index $match 0 }}
+                        <a href="{{ $translatedPage.RelPermalink }}"
+                           class="{{ if eq $langCode $currentPage.Lang }}active{{ end }}">
+                            {{ $langLabel }}
+                        </a>
+                    {{ end }}
+                {{ end }}
+            </div>
+        {{ end }}
     </div>
-    
 
-  <!-- Global Navigation Links -->
+
+    <!-- Global Navigation Links -->
     <nav class="site-nav">
-      {{ with .Site.GetPage "/about" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
-      {{ end }}
+        {{ with .Site.GetPage "/about" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_about" }}</a>
+        {{ end }}
 
-      {{ with site.GetPage "/membership" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
-      {{ end }}
+        {{ with site.GetPage "/membership" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_membership" }}</a>
+        {{ end }}
 
-      {{ with site.GetPage "/mailing-list" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
-      {{ end }}
+        {{ with site.GetPage "/mailing-list" }}
+            <a href="{{ .RelPermalink }}">{{ i18n "nav_mailing_list" }}</a>
+        {{ end }}
 
-      {{ with site.GetPage "/archive" }}
-        <a href="{{ .RelPermalink }}">{{ i18n "nav_archive" }}</a>
-      {{ end }}
+        <a href="{{ "statute.pdf" | relURL }}">{{ i18n "nav_statute" }}</a>
+
+        {{ with site.GetPage "/archive" }}
+          <a href="{{ .RelPermalink }}">{{ i18n "nav_archive" }}</a>
+        {{ end }}
 
         </div>
-      </div>
     </nav>
 </div>

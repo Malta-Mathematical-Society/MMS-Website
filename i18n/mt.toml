@@ -11,6 +11,9 @@ other = "Lista tal-Email"
 [nav_archive]
 other = "Arkivju"
 
+[nav_statute]
+other = "Statut"
+
 # Archive Dropdown
 [nav_comics]
 other = "Komiks"
@@ -67,3 +70,82 @@ other = "L-aħħar komik"
 
 [previous_event]
 other = "Avveniment Preċedenti"
+
+# Membership Form Translations
+[membership_title]
+other = "Sir Membru"
+
+[membership_subtitle]
+other = "Ingħaqad mas-Soċjetà Matematika ta' Malta. Is-sħubija hija valida għal sena sħiħa mid-data tar-reġistrazzjoni."
+
+[member_name]
+other = "Isem"
+
+[member_surname]
+other = "Kunjom"
+
+[member_id_card]
+other = "Numru tal-Karta tal-Identità"
+
+[member_phone]
+other = "Numru tat-Telefon"
+
+[member_email]
+other = "Indirizz tal-Email"
+
+[member_type]
+other = "Tip ta' Sħubija"
+
+[member_type_desc]
+other = "IMPORTANTI: Biex tkun eliġibbli għar-rata mnaqqsa tal-istudenti, trid tkun student tas-Sixth Form, Baċellerat, Masters jew PhD f'istituzzjoni Maltija."
+
+[member_student]
+other = "Student — €8"
+
+[member_non_student]
+other = "Mhux Student — €15"
+
+[member_course]
+other = "Kors Kurrenti"
+
+[member_course_placeholder]
+other = "eż., B.Sc. (Hons) Mathematics"
+
+[member_year]
+other = "Sena fil-Kors"
+
+[member_year_placeholder]
+other = "eż., 1, 2, 3"
+
+[member_grad_year]
+other = "Sena Mistennija tal-Gradwazzjoni"
+
+[member_grad_year_placeholder]
+other = "eż., 2027"
+
+[member_payment_method]
+other = "Metodu ta' Ħlas"
+
+[member_pay_revolut_label]
+other = "Revolut"
+
+[member_pay_revolut_link]
+other = "Agħfas hawn biex tħallas fuq Revolut"
+
+[member_pay_revolut_qr_note]
+other = "Skennja l-kodiċi QR jew agħfas il-buttuna ta' hawn fuq biex tħallas:"
+
+[member_pay_bov_label]
+other = "BoV Mobile Pay (99963942 — Matthew Fenech)"
+
+[member_pay_cash_label]
+other = "Flus Kontanti (Ikkuntattjana biex tirranġa l-ħlas)"
+
+[member_payment_note]
+other = "Jekk jogħġbok ibgħat il-ħlas permezz tal-metodu magħżul wara li tissottometti din il-formola."
+
+[member_submit]
+other = "Issottometti r-Reġistrazzjoni"
+
+[member_submitting]
+other = "Qed jiġi sottomess..."
