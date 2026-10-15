@@ -1,5 +1,5 @@
 ---
-title: "Beyond the Jacobian Conjecture: Writeup!"
+title: "Beyond the Jacobian Conjecture Writeup"
 eventId: "jacobian-2026"
 date: 2026-08-29
 EventPostType: "writeup"

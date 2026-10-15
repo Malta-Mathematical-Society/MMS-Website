@@ -6,7 +6,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
   
   :root {
-    --width: 720px;
+    --width: 800px;
     --font-main: 'Lato', Verdana, sans-serif;
     --font-secondary: 'Lato', Verdana, sans-serif;
     --font-scale: 1.25rem;
@@ -18,7 +18,7 @@
     --blockquote-color: #000000;
     --header-bg: #F6CA50;        /* Yellow header stripe */
     --stripe-bg: #000000;     /* White divider line */
-    --footer-bg: #0471cc;        /* Red footer stripe */
+    --footer-bg: #ab362e;        /* Red footer stripe */
     --node-diameter: 30px;
   }
 
@@ -36,12 +36,13 @@
     text-align: left;
     margin: 0;
     background-color: var(--background-color);
-
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   main {
     max-width: var(--width);
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem;
     margin: auto;
     border: 2px solid #000000;
     position: relative;
@@ -106,9 +107,12 @@
   }
 
   img {
+    max-height: 80vh;
+    width: auto;
     max-width: 100%;
-    height: auto;
+    object-fit: contain;
     display: block;
+    margin: 0 auto; /*center*/
   }
 
 /* ==========================================================================
@@ -126,6 +130,7 @@
   h1,h2 {
   text-transform: uppercase;
 }
+
 
   a {
     color: var(--link-color);
@@ -190,8 +195,6 @@
     padding: 10px 20px;
     gap: 1.5rem;
     width: 100%;
-    margin: auto;
-    outline: 2px solid #000000;
   }
 
 @media (max-width: 700px) {     /* Set this to the exact width where items get close */
@@ -248,89 +251,6 @@
     color: var(--visited-color);
 }
 
-/* Dropdown Container */
-/* Keep the site-nav aligned horizontally */
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Treat the dropdown container as part of the inline text flow */
-.dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Style the archive button to look like any other text link */
-.dropdown-title {
-  background: none;
-  border: none;
-  font: inherit;
-  font-weight: 700;
-  color: var(--link-color);
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.dropdown-title:hover {
-  color: var(--visited-color);
-}
-
-/* 1 & 2. Arrow on the LEFT, using the long character ＞ */
-.dropdown-title::before {
-  content: "＞";
-  display: inline-block;
-  font-weight: normal;
-}
-
-/* Clear any accidental pseudo-elements on the right */
-.dropdown-title::after {
-  content: none;
-  display: none; /* Hidden by default */
-}
-
-/* When the dropdown is open, make the colon appear right after "Archive" */
-.dropdown:focus-within .dropdown-title::after {
-  content: ":";
-  display: inline;
-}
-
-/* 3. The 3 categories are hidden by default */
-.dropdown-content {
-  display: none;
-}
-
-/* 4. When focused/clicked, append them directly to the RIGHT as text items */
-.dropdown:focus-within .dropdown-content {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem; /* Space between the appended category links */
-  margin-left: 0.75rem; /* Space between "Archive" and the first category */
-}
-
-/* Style the appended items to look like clean, unboxed text links */
-.dropdown-content a {
-  color: var(--link-color);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.dropdown-content a:hover {
-  color: var(--visited-color);
-}
-
-/* Optional separator slash/bullet between the appended items if you want them distinct */
-.dropdown-content a + a::before {
-  content: "/";
-  margin-right: 0.75rem;
-  color: var(--text-color);
-  font-weight: normal;
-}
 /* ==========================================================================
    4. LANGUAGE SWITCHER TOGGLE
    ========================================================================== */
@@ -493,190 +413,169 @@
 /* ==========================================================================
    6. HOME PAGE
    ========================================================================== */
-  /* Horizontal Divider (if used elsewhere) */
-  .home-grid ul {
-  padding:0
-  }
-
-  .p-divider-x {
-    background-color: #000000;
-    width: 2px;
-    height: 100%;
+/* Target main ONLY on the index page where .home-grid exists */
+  main:has(.home-grid) {
+    /* 1. Reset standard layout box & borders */
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
     position: relative;
+    
+    /* 2. Turn main into the horizontal side-scroll track */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    
+    /* 3. Smooth momentum scrolling & snap behavior */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
-  .p-divider-y {
-    background-color: #000000;
-    width: 100%;
-    height: 2px;
-    position: relative;
+  /* 4. Remove corner circle nodes on index page only */
+  main:has(.home-grid)::before,
+  main:has(.home-grid)::after,
+  main:has(.home-grid) > *:last-child::before,
+  main:has(.home-grid) > *:last-child::after {
+    display: none !important;
+    content: none !important;
   }
 
-  /* Horizontal Divider (if used elsewhere) */
-  .p-divider-x {
-    background-color: #000000;
-    width: 2px;
-    height: 100%;
-    position: relative;
+  .home-grid ul, p {
+    padding: 0;
+    margin: 0;
   }
 
-  /* Vertical Hairline / Horizontal Divider for Stacked Layout */
-  .p-divider-y {
-    background-color: #000000;
-    width: 100%;
-    height: 2px;
-    position: relative;
+  .home-grid {
+  display: flex !important;
+  flex-direction: row !important; /*text allighned with image*/
+  width: max-content !important;
   }
 
-  /* Base style for both end circles */
-  .p-divider-y::before,
-  .p-divider-y::after {
-    content: "";
-    position: absolute;
-    width: var(--node-diameter);
-    height: var(--node-diameter);
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    margin-left:-1px;
-    margin-right:-1px;
-    z-index: 2;
+  .home-grid h3 {
+    font-weight: normal;
+    font-style: italic;
+    margin-top: 0;
+  } 
+
+  .home-grid img {  
+    /* 1. Prevent vertical squishing on short screens */
+    min-height: 300px !important; /* Set your desired minimum height floor */
+    
+    /* 2. Prevent excessive growth on ultra-tall screens */
+    max-height: 700px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* Flip layout from horizontal row back to vertical column stack */
+    .home-grid {
+      flex-direction: column !important;
+      width: 100% !important;
+    }
   }
 
-  /* Horizontal alignment of circles for the stacked layout */
-  .p-divider-y::before {
-    left: 0;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .p-divider-y::after {
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-  }
-
-
-  /* Horizontal alignment of circles for the stacked layout */
-  .p-divider-y::before {
-    left: 0;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .p-divider-y::after {
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-  }
 
 /* ==========================================================================
    7. COMIC VIEWER
    ========================================================================== */
-.comic-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem; /* Spacious text-based separation */
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-secondary);
-  font-weight: 700;
-}
+  .comic-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* Spacious text-based separation */
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+  }
 
-/* Treat navigation items like normal text links */
-.comic-nav a {
-  color: var(--visited-color);
-  text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-}
+  /* Treat navigation items like normal text links */
+  .comic-nav a {
+    color: var(--visited-color);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
 
-.comic-nav a:hover {
-  color: var(--link-color);
-}
+  .comic-nav a:hover {
+    color: var(--link-color);
+  }
 
-/* Disabled state (e.g., on the first or last page of the comic) */
-.comic-nav .disabled {
-  color: var(--text-color);
-  opacity: 0.3;
-  pointer-events: none;
-  text-decoration: none;
-}
+  /* Disabled state (e.g., on the first or last page of the comic) */
+  .comic-nav .disabled {
+    color: var(--text-color);
+    opacity: 0.3;
+    pointer-events: none;
+    text-decoration: none;
+  }
 
-.comic-transcript {
-  padding: 0rem 2rem 1rem;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+  .comic-transcript {
+    padding: 0rem 2rem 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 
-/* 1. Hide default triangle */
-.comic-transcript summary {
-  min-width: 0;
-  font-family: inherit;
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  display: inline-block;
-  overflow-wrap: anywhere;
-}
+  /* 1. Hide default triangle */
+  .comic-transcript summary {
+    min-width: 0;
+    font-family: inherit;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    overflow-wrap: anywhere;
+  }
 
-.comic-transcript summary::-webkit-details-marker {
-  display: none; /* remove auto trianlge */
-}
+  .comic-transcript summary::-webkit-details-marker {
+    display: none; /* remove auto trianlge */
+  }
 
-pre,
-.transcript pre {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;  /* Preserves linebreaks but wraps at container boundary */
-}
+  pre,
+  .transcript pre {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;  /* Preserves linebreaks but wraps at container boundary */
+  }
 
-/*  Add custom arrow */
-.comic-transcript summary::before {
-  content: "＞";
-  display: inline-block;
-}
+  /*  Add custom arrow */
+  .comic-transcript summary::before {
+    content: "＞";
+    display: inline-block;
+  }
 
 
-/* 3. Spin on open */
-.comic-transcript[open] summary::before {
-  transform: rotate(90deg);
-}
+  /* 3. Spin on open */
+  .comic-transcript[open] summary::before {
+    transform: rotate(90deg);
+  }
 
-.comic-transcript summary:hover {
-  color: var(--link-color);
-}
+  .comic-transcript summary:hover {
+    color: var(--link-color);
+  }
 
 /* ==========================================================================
    8. FOOTER
    ========================================================================== */
 
-footer {
-  background: var(--footer-bg);
-  text-align: center;
-  font-size: 1rem;
-  padding: 10px;
-  outline: 2px solid #000000;
-}
+  footer {
+    background: var(--footer-bg);
+    text-align: center;
+    padding: 10px;
+  }
 
-footer p {
-  margin: 0;
-  color: #000000;
-}
+  footer a {
+    color: inherit;
+  }
 
-footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-footer a:hover {
-  color: #ffffff;
-}
+  footer a:hover {
+    color: #ffffff;
+  }
 
 /* ==========================================================================
    9. MEMBERSHIP FORM

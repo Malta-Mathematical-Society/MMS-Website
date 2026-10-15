@@ -1,5 +1,5 @@
 [nav_about]
-other = "About"
+other = "About Us"
 
 [nav_membership]
 other = "Membership"
@@ -24,15 +24,10 @@ other = "Events"
 other = "Newsletters"
 
 # Headers and Titles
-[upcoming_events]
-other = "Upcoming Events"
+[upcoming_event]
+other = "Upcoming Event"
 
 #mailing list transaltions
-[mailing_title]
-other = "Sign up to our mailing list"
-
-[mailing_subtitle]
-other = "Get our updates delievered fresh to your email."
 
 [mailing_email_label]
 other = "Email Address:"

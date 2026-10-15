@@ -43,24 +43,10 @@
 
         <a href="{{ "statute.pdf" | relURL }}">{{ i18n "nav_statute" }}</a>
 
-        <!-- Archive Dropdown -->
-        <div class="dropdown">
-            <button class="dropdown-title" type="button" aria-expanded="false">
-                {{ i18n "nav_archive" }}
-            </button>
-            <div class="dropdown-content">
-                {{ with site.GetPage "/events" }}
-                    <a href="{{ .RelPermalink }}">{{ i18n "nav_events" }}</a>
-                {{ end }}
+        {{ with site.GetPage "/archive" }}
+          <a href="{{ .RelPermalink }}">{{ i18n "nav_archive" }}</a>
+        {{ end }}
 
-                {{ with site.GetPage "/comics" }}
-                    <a href="{{ .RelPermalink }}">{{ i18n "nav_comics" }}</a>
-                {{ end }}
-
-                {{ with site.GetPage "/newsletters" }}
-                    <a href="{{ .RelPermalink }}">{{ i18n "nav_newsletters" }}</a>
-                {{ end }}
-            </div>
         </div>
     </nav>
 </div>

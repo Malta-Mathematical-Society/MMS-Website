@@ -1,7 +1,5 @@
 {{ define "main" }}
 <div class="home-grid">
-    <article class="col">
-        <h2>{{ i18n "upcoming_events" }}</h2>
         <ul>
             {{ range sort (where .Site.RegularPages "Section" "events") "Params.startdate" "asc" }}
 
@@ -9,6 +7,7 @@
                 {{ $isDateConfirmed := .Params.isDateConfirmed }}
                 {{ $isDraft := .Params.draft }}
                 {{ $show := false }}
+                
                 {{ if eq $isDateConfirmed false }}
                     {{ $show = true }}
                 {{ else if .Params.enddate }}
@@ -22,41 +21,44 @@
                 {{ end }}
 
                 {{ if $show }}
-                    <h3>
-                        {{/* 1. Date (plain text, unlinked) */}}
-                        {{ if .Params.startdate }}
-                            <span class="event-date">{{ (time.AsTime .Params.startdate).Format "02 Jan" }}</span>: 
+                    <div class="col">
+                        {{/* 1. Image (hyperlinked to event permalink) */}}
+                        {{ $imgParam := or .Params.mainImage .Params.mainImg }}
+                        {{ if $imgParam }}
+                            {{ $img := .Resources.Get $imgParam }}
+                            {{ if $img }}
+                                <a href="{{ .RelPermalink }}">
+                                    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" class="preview-comic-img" />
+                                </a>
+                            {{ else }}
+                                {{/* Fallback if image is a path relative to static/ or an external URL */}}
+                                <a href="{{ .RelPermalink }}">
+                                    <img src="{{ $imgParam | relURL }}" alt="{{ .Title }}" class="preview-comic-img" />
+                                </a>
+                            {{ end }}
                         {{ end }}
 
-                        {{/* 2. Title (hyperlinked) */}}
-                        <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
-                    </h3>
-                    {{/* Match the mainImage parameter from TOML */}}
-                    {{ with .Resources.Get .Params.mainImage }}
-                        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="preview-comic-img" />
-                    {{ end }}
+                        <h3>
+                            {{/* 2. Title (hyperlinked) */}}
+                            {{ i18n "upcoming_event" }}: <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
+                        </h3>
+
+                    </div>
                 {{ end }}
             {{ end }}
         </ul>
-    </article>
 
-    <!-- DIVIDER 1 -->
-    <div class="p-divider-y" role="separator"></div>
-
-    <article class="col">
-        <h2>{{ i18n "previous_event" }}</h2>
+        <!-- DIVIDER 1 -->
+    
         {{/* 1. Fetch writeups from the primary (EN) site */}}
         {{ $enSite := index .Sites 0 }}
-        {{ $writeups := where (where $enSite.RegularPages "Section" "events") "Params.eventposttype" "writeup" }}
+        {{ $writeups := where $enSite.RegularPages "Section" "blog"}}
         {{ $latestWriteup := index $writeups.ByDate.Reverse 0 }}
         
         {{ with $latestWriteup }}
             {{/* 2. Get current language translation, or default back to EN */}}
             {{ $target := index (where .AllTranslations "Lang" $.Lang) 0 | default . }}
-            <div class="previous-event-preview">
-                <h3>
-                    <a href="{{ $target.RelPermalink }}" class="event-title">{{ $target.Title }}</a>
-                </h3>
+            <div class="col">
                 {{ with $target.Resources.Get $target.Params.mainImage }}
                     <p>
                         <a href="{{ $target.RelPermalink }}">
@@ -64,15 +66,11 @@
                         </a>
                     </p>
                 {{ end }}
+                <h3>{{ i18n "previous_event" }}: <a href="{{ $target.RelPermalink }}" class="event-title">{{ $target.Title }}</a></h3>
             </div>
         {{ end }}
-    </article>
 
     <!-- DIVIDER 2 -->
-    <div class="p-divider-y" role="separator"></div>
-
-    <article class="col">
-        <h2>{{ i18n "latest_comic" }}</h2>
         {{/* 1. Fetch comics from the primary (EN) site */}}
         {{ $enSite := index .Sites 0 }}
         {{ $comics := where $enSite.RegularPages "Type" "comics" }}
@@ -81,18 +79,21 @@
         {{ with $latest }}
             {{/* 2. Get current language translation, or default back to EN */}}
             {{ $target := index (where .AllTranslations "Lang" $.Lang) 0 | default . }}
-            <div class="comic-preview">
+            <div class="col">
                 <a href="{{ $target.RelPermalink }}" title="{{ $target.Title }}">
-                    {{ if $target.Resources.GetMatch "comic*" }}
-                        {{ $img := $target.Resources.GetMatch "comic*" }}
-                        <img src="{{ $img.RelPermalink }}" 
-                        alt="{{ $target.Title }}"
-                        title="{{ $target.Params.alt }}"
-                        class="preview-comic-img" />
-                    {{ else }}
-                        {{/* Fallback if no specific image key is found */}}
-                        <p>{{ $target.Title }}</p>
-                    {{ end }}
+                    <p>
+                        {{ if $target.Resources.GetMatch "comic*" }}
+                            {{ $img := $target.Resources.GetMatch "comic*" }}
+                            <img src="{{ $img.RelPermalink }}" 
+                            alt="{{ $target.Title }}"
+                            title="{{ $target.Params.alt }}"
+                            class="preview-comic-img" />
+                        {{ else }}
+                            {{/* Fallback if no specific image key is found */}}
+                            {{ $target.Title }}</p>
+                        {{ end }}
+                    </p>
+                    <h3>{{ i18n "latest_comic" }}</h3>
                 </a>
             </div>
         {{ end }}

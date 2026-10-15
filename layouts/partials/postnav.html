@@ -1,11 +1,11 @@
 {{ $comics := (where .Site.RegularPages "Type" "comics").ByDate }}
-{{ $first := index $comics 0 }}
-{{ $latest := index $comics.Reverse 0 }}
+{{ $first := index $comics 0}}
+{{ $latest := index $comics.Reverse 0}}
 
 <nav class="comic-nav">
   <!-- First Comic -->
-  <a href="{{ $first.RelPermalink }}" class="{{ if eq $.Permalink $first.Permalink }}disabled{{ end }}">&vert;&lt;</a>
-
+  <a href="{{ $first.RelPermalink }}" {{ if eq . $first }}class="disabled"{{ end }}>|&lt;</a>
+  
   <!-- Previous Comic (Older) -->
   {{ with .PrevInSection }}
     <a href="{{ .RelPermalink }}">&lt; Prev</a>
@@ -14,9 +14,9 @@
   {{ end }}
 
   <!-- Random Comic (Client-Side JS) -->
-  <a href="{{ (.Site.GetPage "Random").RelPermalink }}">Random</a>
-
+  <a href="#" onclick="const pages=[{{ range $comics }}'{{ .RelPermalink }}',{{ end }}]; location.href=pages[Math.floor(Math.random()*pages.length)]; return false;">Random</a>
   <!-- Next Comic (Newer) -->
+  
   {{ with .NextInSection }}
     <a href="{{ .RelPermalink }}">Next &gt;</a>
   {{ else }}
